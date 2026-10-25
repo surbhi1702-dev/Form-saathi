@@ -4,7 +4,7 @@ A chat assistant that helps people fill Indian bank and government forms in Tami
 
 ## Why it exists
 
-Millions of people in India can't comfortably read an English form, or can't see the small print. To fill a bank slip, a KYC form or an electricity connection form, they rely on a middleman: a relative who has to sit with them, or an agent near the office who charges a fee. Form Saathi is an AI agent that does that middleman's job. It asks one question at a time in the person's own language, explains words like "sanctioned load" or "encumbrance", catches mistakes before the form reaches the counter, and can work entirely by voice.
+Many people in India can't comfortably read an English form, or can't see the small print. To fill a bank slip, a KYC form or an electricity connection form, they rely on a middleman: a relative who has to sit with them, or an agent near the office who charges a fee. Form Saathi is an AI agent that does that middleman's job. It asks one question at a time in the person's own language, explains words like "sanctioned load" or "encumbrance", catches mistakes before the form reaches the counter, and can work entirely by voice.
 
 ## What it does
 
