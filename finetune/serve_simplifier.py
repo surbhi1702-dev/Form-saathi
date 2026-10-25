@@ -28,7 +28,7 @@ args = ap.parse_args()
 
 device = "cuda" if torch.cuda.is_available() else "cpu"
 tok = AutoTokenizer.from_pretrained(args.base)
-model = AutoModelForCausalLM.from_pretrained(args.base, torch_dtype=torch.float16 if device == "cuda" else torch.float32)
+model = AutoModelForCausalLM.from_pretrained(args.base, dtype=torch.float16 if device == "cuda" else torch.float32)
 if not args.base_only:
     from peft import PeftModel
 
