@@ -1,0 +1,155 @@
+{
+  "id": "metrowater_connection",
+  "category": "utilities",
+  "output": "form",
+  "title": {
+    "en": "Metro water & sewer connection",
+    "ta": "மெட்ரோ குடிநீர் மற்றும் கழிவுநீர் இணைப்பு",
+    "hi": "मेट्रो पानी और सीवर कनेक्शन",
+    "or": "ମେଟ୍ରୋ ପାଣି ଓ ସିୱର ସଂଯୋଗ"
+  },
+  "description": {
+    "en": "Apply for a new water and/or sewer connection (Chennai Metrowater).",
+    "ta": "புதிய குடிநீர் மற்றும்/அல்லது கழிவுநீர் இணைப்புக்கு விண்ணப்பிக்க (சென்னை மெட்ரோவாட்டர்).",
+    "hi": "नए पानी और/या सीवर कनेक्शन का आवेदन (चेन्नई मेट्रोवाटर)।",
+    "or": "ନୂଆ ପାଣି ଓ/ବା ସିୱର ସଂଯୋଗ ଆବେଦନ (ଚେନ୍ନାଇ ମେଟ୍ରୋୱାଟର)।"
+  },
+  "department": "Chennai Metrowater (CMWSSB)",
+  "keywords": [
+    "water",
+    "metro water",
+    "metrowater",
+    "sewer",
+    "drainage",
+    "water connection",
+    "குடிநீர்",
+    "தண்ணீர்",
+    "पानी",
+    "ପାଣି"
+  ],
+  "knowledge_tags": [
+    "metrowater"
+  ],
+  "submit_note": "Apply online on the Chennai Metrowater website or at the depot office for your area. Charges depend on building size and usage.",
+  "fields": [
+    {
+      "use": "full_name"
+    },
+    {
+      "use": "father_or_spouse_name"
+    },
+    {
+      "use": "mobile"
+    },
+    {
+      "use": "email"
+    },
+    {
+      "id": "property_address",
+      "type": "address",
+      "label": {
+        "en": "Property address"
+      },
+      "question": {
+        "en": "What is the full address of the property?"
+      },
+      "explain": "Address of the building that needs the connection.",
+      "min_length": 10
+    },
+    {
+      "use": "pincode"
+    },
+    {
+      "id": "property_tax_assessment_no",
+      "type": "text",
+      "label": {
+        "en": "Property tax assessment number"
+      },
+      "question": {
+        "en": "What is the property tax assessment number? (on your property tax receipt)"
+      },
+      "explain": "The number on your Corporation property tax receipt. It links the connection to the right property.",
+      "latin_only": true
+    },
+    {
+      "id": "connection_type",
+      "type": "choice",
+      "label": {
+        "en": "Connection needed"
+      },
+      "question": {
+        "en": "Which connection do you need?"
+      },
+      "explain": "Water supply brings drinking water; sewer connection takes waste water to the city drainage.",
+      "options": [
+        "Water only",
+        "Sewer only",
+        "Water and sewer"
+      ]
+    },
+    {
+      "id": "building_usage",
+      "type": "choice",
+      "label": {
+        "en": "Building usage"
+      },
+      "question": {
+        "en": "How is the building used?"
+      },
+      "explain": "Commercial and mixed-use buildings pay different charges.",
+      "options": [
+        "Residential",
+        "Commercial",
+        "Mixed (residential + commercial)"
+      ]
+    },
+    {
+      "id": "floors",
+      "type": "number",
+      "label": {
+        "en": "Number of floors"
+      },
+      "question": {
+        "en": "How many floors does the building have (including ground floor)?"
+      },
+      "explain": "Count the ground floor as 1.",
+      "min": 1,
+      "max": 100
+    },
+    {
+      "id": "dwelling_units",
+      "type": "number",
+      "label": {
+        "en": "Number of houses/flats"
+      },
+      "question": {
+        "en": "How many separate houses or flats are in the building?"
+      },
+      "explain": "Each separate living unit counts.",
+      "min": 1,
+      "max": 1000
+    },
+    {
+      "id": "built_up_area_sqft",
+      "type": "number",
+      "label": {
+        "en": "Built-up area (sq. ft.)"
+      },
+      "question": {
+        "en": "What is the total built-up area in square feet?"
+      },
+      "explain": "Total covered area of all floors.",
+      "max": 1000000
+    },
+    {
+      "use": "place"
+    }
+  ],
+  "documents": [
+    "Latest property tax receipt",
+    "Sale deed or patta",
+    "Approved building plan",
+    "ID proof",
+    "Passport-size photo"
+  ]
+}

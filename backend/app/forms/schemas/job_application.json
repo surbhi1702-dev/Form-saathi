@@ -1,0 +1,166 @@
+{
+  "id": "job_application",
+  "category": "employment",
+  "output": "form",
+  "title": {
+    "en": "Job application form",
+    "ta": "வேலை விண்ணப்பப் படிவம்",
+    "hi": "नौकरी आवेदन फॉर्म",
+    "or": "ଚାକିରି ଆବେଦନ ଫର୍ମ"
+  },
+  "description": {
+    "en": "Fill a standard job application with your education and experience.",
+    "ta": "உங்கள் கல்வி மற்றும் அனுபவத்துடன் வேலை விண்ணப்பத்தை நிரப்ப.",
+    "hi": "अपनी शिक्षा और अनुभव के साथ नौकरी का आवेदन भरें।",
+    "or": "ଆପଣଙ୍କ ଶିକ୍ଷା ଓ ଅଭିଜ୍ଞତା ସହ ଚାକିରି ଆବେଦନ ଭରନ୍ତୁ।"
+  },
+  "department": "Employer",
+  "keywords": [
+    "job",
+    "job application",
+    "apply job",
+    "employment form",
+    "வேலை",
+    "नौकरी",
+    "ଚାକିରି"
+  ],
+  "knowledge_tags": [
+    "job_application"
+  ],
+  "submit_note": "Attach your resume and copies of certificates. Keep the post name and reference number exactly as in the advertisement.",
+  "fields": [
+    {
+      "id": "post_applied_for",
+      "type": "text",
+      "label": {
+        "en": "Post applied for"
+      },
+      "question": {
+        "en": "Which job/post are you applying for? (as written in the advertisement)"
+      },
+      "explain": "Write the post name exactly as in the job advertisement, including any reference number.",
+      "latin_only": true
+    },
+    {
+      "use": "full_name"
+    },
+    {
+      "use": "father_or_spouse_name"
+    },
+    {
+      "use": "date_of_birth",
+      "rule": "adult"
+    },
+    {
+      "use": "gender"
+    },
+    {
+      "use": "mobile"
+    },
+    {
+      "use": "email"
+    },
+    {
+      "use": "address"
+    },
+    {
+      "use": "pincode"
+    },
+    {
+      "id": "highest_qualification",
+      "type": "text",
+      "label": {
+        "en": "Highest qualification"
+      },
+      "question": {
+        "en": "What is your highest qualification? (for example B.Sc Computer Science)"
+      },
+      "explain": "Your highest completed degree or diploma.",
+      "latin_only": true
+    },
+    {
+      "id": "institution_and_year",
+      "type": "text",
+      "label": {
+        "en": "Institution and year of passing"
+      },
+      "question": {
+        "en": "Which college/university, and which year did you pass?"
+      },
+      "explain": "For example: Anna University, 2019.",
+      "latin_only": true
+    },
+    {
+      "id": "experience_years",
+      "type": "number",
+      "label": {
+        "en": "Total experience (years)"
+      },
+      "question": {
+        "en": "How many years of work experience do you have? Say 0 if you're a fresher."
+      },
+      "explain": "Total years of paid work. Use decimals for part years, like 2.5.",
+      "max": 50
+    },
+    {
+      "id": "current_employer",
+      "type": "text",
+      "label": {
+        "en": "Current / last employer"
+      },
+      "question": {
+        "en": "Where do you work now (or where did you last work)?"
+      },
+      "explain": "Name of your current or most recent employer.",
+      "latin_only": true,
+      "required": false
+    },
+    {
+      "id": "expected_salary",
+      "type": "amount",
+      "label": {
+        "en": "Expected salary (per year)"
+      },
+      "question": {
+        "en": "What salary do you expect per year?"
+      },
+      "explain": "Give a yearly figure (CTC). You can skip this if the form doesn't require it.",
+      "required": false
+    },
+    {
+      "id": "notice_period_days",
+      "type": "number",
+      "label": {
+        "en": "Notice period (days)"
+      },
+      "question": {
+        "en": "How many days' notice do you need to give your current employer?"
+      },
+      "explain": "How soon you can join. Say 0 if you can join immediately.",
+      "max": 180,
+      "required": false
+    },
+    {
+      "id": "languages_known",
+      "type": "text",
+      "label": {
+        "en": "Languages known"
+      },
+      "question": {
+        "en": "Which languages do you know?"
+      },
+      "explain": "For example: Tamil, English, Hindi.",
+      "latin_only": true
+    },
+    {
+      "use": "place"
+    }
+  ],
+  "documents": [
+    "Resume",
+    "Educational certificates and mark sheets",
+    "Experience / relieving letters",
+    "ID proof",
+    "Passport-size photo"
+  ]
+}

@@ -1,0 +1,72 @@
+{"form_id": "bank_savings_account", "field_id": "mobile", "lang": "en", "text": "98400 12345", "expected": "9840012345", "note": ""}
+{"form_id": "bank_savings_account", "field_id": "mobile", "lang": "en", "text": "+91 98400-12345", "expected": "9840012345", "note": ""}
+{"form_id": "bank_savings_account", "field_id": "mobile", "lang": "en", "text": "my number is 9840012345", "expected": "9840012345", "note": ""}
+{"form_id": "bank_savings_account", "field_id": "mobile", "lang": "ta", "text": "என் நம்பர் 9840012345", "expected": "9840012345", "note": ""}
+{"form_id": "bank_savings_account", "field_id": "mobile", "lang": "hi", "text": "मेरा नंबर 9840012345 है", "expected": "9840012345", "note": ""}
+{"form_id": "bank_savings_account", "field_id": "mobile", "lang": "en", "text": "09840012345", "expected": "9840012345", "note": ""}
+{"form_id": "bank_savings_account", "field_id": "mobile", "lang": "en", "text": "98400 1234", "expected": null, "note": "only 9 digits - must be rejected"}
+{"form_id": "bank_savings_account", "field_id": "mobile", "lang": "en", "text": "1234567890", "expected": null, "note": "starts with 1 - must be rejected"}
+{"form_id": "bank_savings_account", "field_id": "pincode", "lang": "en", "text": "600 040", "expected": "600040", "note": ""}
+{"form_id": "bank_savings_account", "field_id": "pincode", "lang": "en", "text": "pin is 751013", "expected": "751013", "note": ""}
+{"form_id": "bank_savings_account", "field_id": "pincode", "lang": "en", "text": "60004", "expected": null, "note": "5 digits - must be rejected"}
+{"form_id": "bank_savings_account", "field_id": "aadhaar", "lang": "en", "text": "2345 6789 0124", "expected": "2345 6789 0124", "note": ""}
+{"form_id": "bank_savings_account", "field_id": "aadhaar", "lang": "en", "text": "my aadhaar is 234567890124", "expected": "2345 6789 0124", "note": ""}
+{"form_id": "bank_savings_account", "field_id": "aadhaar", "lang": "en", "text": "1234 5678 9012", "expected": null, "note": "fails checksum - must be rejected"}
+{"form_id": "bank_savings_account", "field_id": "aadhaar", "lang": "en", "text": "2345 6789 0125", "expected": null, "note": "one digit wrong - must be rejected"}
+{"form_id": "bank_savings_account", "field_id": "pan", "lang": "en", "text": "abcde1234f", "expected": "ABCDE1234F", "note": ""}
+{"form_id": "bank_savings_account", "field_id": "pan", "lang": "en", "text": "ABCDE 1234 F", "expected": "ABCDE1234F", "note": ""}
+{"form_id": "bank_savings_account", "field_id": "pan", "lang": "en", "text": "my pan is ABCDE1234F", "expected": "ABCDE1234F", "note": ""}
+{"form_id": "bank_savings_account", "field_id": "pan", "lang": "en", "text": "ABCD1234F", "expected": null, "note": "too short - must be rejected"}
+{"form_id": "epf_form11", "field_id": "ifsc", "lang": "en", "text": "sbin0001234", "expected": "SBIN0001234", "note": ""}
+{"form_id": "epf_form11", "field_id": "ifsc", "lang": "en", "text": "IFSC is SBIN0001234", "expected": "SBIN0001234", "note": ""}
+{"form_id": "epf_form11", "field_id": "ifsc", "lang": "en", "text": "SBIN1001234", "expected": null, "note": "5th character must be 0"}
+{"form_id": "epf_form11", "field_id": "uan", "lang": "en", "text": "100200300400", "expected": "100200300400", "note": ""}
+{"form_id": "bank_cheque", "field_id": "amount", "lang": "en", "text": "25,000", "expected": 25000, "note": ""}
+{"form_id": "bank_cheque", "field_id": "amount", "lang": "en", "text": "2.5 lakh", "expected": 250000, "note": ""}
+{"form_id": "bank_cheque", "field_id": "amount", "lang": "en", "text": "Rs. 1,50,000/-", "expected": 150000, "note": ""}
+{"form_id": "bank_cheque", "field_id": "amount", "lang": "en", "text": "50k", "expected": 50000, "note": ""}
+{"form_id": "bank_cheque", "field_id": "amount", "lang": "en", "text": "rupees five thousand", "expected": 5000, "note": "number written in words"}
+{"form_id": "bank_cheque", "field_id": "amount", "lang": "hi", "text": "पचास हज़ार", "expected": 50000, "note": "Hindi words"}
+{"form_id": "bank_cheque", "field_id": "amount", "lang": "ta", "text": "ஐந்தாயிரம் ரூபாய்", "expected": 5000, "note": "Tamil words"}
+{"form_id": "bank_cheque", "field_id": "cheque_date", "lang": "en", "text": "today", "expected": "__today__", "note": ""}
+{"form_id": "bank_cheque", "field_id": "cheque_date", "lang": "ta", "text": "இன்று", "expected": "__today__", "note": ""}
+{"form_id": "bank_savings_account", "field_id": "date_of_birth", "lang": "en", "text": "15/08/1990", "expected": "15/08/1990", "note": ""}
+{"form_id": "bank_savings_account", "field_id": "date_of_birth", "lang": "en", "text": "15 Aug 1990", "expected": "15/08/1990", "note": ""}
+{"form_id": "bank_savings_account", "field_id": "date_of_birth", "lang": "en", "text": "1990-08-15", "expected": "15/08/1990", "note": ""}
+{"form_id": "bank_savings_account", "field_id": "date_of_birth", "lang": "en", "text": "August 15, 1990", "expected": "15/08/1990", "note": "month first"}
+{"form_id": "bank_savings_account", "field_id": "date_of_birth", "lang": "ta", "text": "15 ஆகஸ்ட் 1990", "expected": "15/08/1990", "note": "Tamil month name"}
+{"form_id": "bank_savings_account", "field_id": "date_of_birth", "lang": "en", "text": "15/08/2035", "expected": null, "note": "future date of birth - must be rejected"}
+{"form_id": "bank_savings_account", "field_id": "full_name", "lang": "en", "text": "Ravi Kumar", "expected": "Ravi Kumar", "note": ""}
+{"form_id": "bank_savings_account", "field_id": "full_name", "lang": "en", "text": "my name is ravi kumar", "expected": "Ravi Kumar", "note": ""}
+{"form_id": "bank_savings_account", "field_id": "full_name", "lang": "en", "text": "RAVI KUMAR", "expected": "Ravi Kumar", "note": ""}
+{"form_id": "bank_savings_account", "field_id": "full_name", "lang": "ta", "text": "ரவி குமார்", "expected": ["Ravi Kumar", "Ravi Kumaar"], "note": "Tamil script - needs transliteration"}
+{"form_id": "bank_savings_account", "field_id": "full_name", "lang": "hi", "text": "सुनीता देवी", "expected": ["Sunita Devi", "Suneeta Devi"], "note": "Devanagari - needs transliteration"}
+{"form_id": "bank_savings_account", "field_id": "full_name", "lang": "or", "text": "ସୁନୀତା ମହାନ୍ତି", "expected": ["Sunita Mahanti", "Sunita Mohanty", "Suneeta Mahanti"], "note": "Odia script - needs transliteration"}
+{"form_id": "bank_savings_account", "field_id": "full_name", "lang": "en", "text": "Ravi 123", "expected": null, "note": "digits in a name - must be rejected"}
+{"form_id": "bank_savings_account", "field_id": "gender", "lang": "en", "text": "female", "expected": "Female", "note": ""}
+{"form_id": "bank_savings_account", "field_id": "gender", "lang": "en", "text": "2", "expected": "Female", "note": ""}
+{"form_id": "bank_savings_account", "field_id": "gender", "lang": "ta", "text": "பெண்", "expected": "Female", "note": ""}
+{"form_id": "bank_savings_account", "field_id": "gender", "lang": "hi", "text": "महिला", "expected": "Female", "note": ""}
+{"form_id": "bank_savings_account", "field_id": "gender", "lang": "or", "text": "ମହିଳା", "expected": "Female", "note": ""}
+{"form_id": "bank_savings_account", "field_id": "gender", "lang": "en", "text": "I am a woman", "expected": "Female", "note": "synonym"}
+{"form_id": "bank_savings_account", "field_id": "gender", "lang": "en", "text": "gents", "expected": "Male", "note": "Indian English synonym"}
+{"form_id": "bank_savings_account", "field_id": "nominee_wanted", "lang": "en", "text": "yes", "expected": "Yes", "note": ""}
+{"form_id": "bank_savings_account", "field_id": "nominee_wanted", "lang": "ta", "text": "ஆமாம்", "expected": "Yes", "note": ""}
+{"form_id": "bank_savings_account", "field_id": "nominee_wanted", "lang": "hi", "text": "हाँ जी", "expected": "Yes", "note": ""}
+{"form_id": "bank_savings_account", "field_id": "nominee_wanted", "lang": "en", "text": "no thanks", "expected": "No", "note": ""}
+{"form_id": "bank_savings_account", "field_id": "nominee_wanted", "lang": "or", "text": "ନା", "expected": "No", "note": ""}
+{"form_id": "bank_savings_account", "field_id": "nominee_wanted", "lang": "en", "text": "sure, add my wife", "expected": "Yes", "note": ""}
+{"form_id": "bank_savings_account", "field_id": "marital_status", "lang": "en", "text": "married", "expected": "Married", "note": ""}
+{"form_id": "bank_savings_account", "field_id": "marital_status", "lang": "en", "text": "my husband passed away", "expected": "Widowed", "note": "described, not named"}
+{"form_id": "eb_domestic", "field_id": "phase", "lang": "en", "text": "single", "expected": "Single phase", "note": ""}
+{"form_id": "eb_domestic", "field_id": "phase", "lang": "en", "text": "three phase", "expected": "Three phase", "note": ""}
+{"form_id": "eb_domestic", "field_id": "connected_load_kw", "lang": "en", "text": "4 fans, 6 LED lights, 1 fridge", "expected": 0.59, "note": ""}
+{"form_id": "eb_domestic", "field_id": "connected_load_kw", "lang": "en", "text": "2.5 kW", "expected": 2.5, "note": ""}
+{"form_id": "eb_domestic", "field_id": "connected_load_kw", "lang": "en", "text": "2 ACs and 4 fans", "expected": 3.3, "note": ""}
+{"form_id": "eb_domestic", "field_id": "connected_load_kw", "lang": "ta", "text": "4 ஃபேன், 1 ஃப்ரிட்ஜ்", "expected": 0.5, "note": ""}
+{"form_id": "bank_savings_account", "field_id": "email", "lang": "en", "text": "Ravi@Gmail.com", "expected": "ravi@gmail.com", "note": ""}
+{"form_id": "bank_savings_account", "field_id": "email", "lang": "en", "text": "my email is ravi@gmail.com", "expected": "ravi@gmail.com", "note": ""}
+{"form_id": "commercial_vehicle_permit", "field_id": "vehicle_registration_no", "lang": "en", "text": "tn 01 ab 1234", "expected": "TN01AB1234", "note": ""}
+{"form_id": "commercial_vehicle_permit", "field_id": "vehicle_registration_no", "lang": "en", "text": "TN-09-BC-4321", "expected": "TN09BC4321", "note": ""}
+{"form_id": "gst_pmt06_challan", "field_id": "gstin", "lang": "en", "text": "__gstin_lower__", "expected": "__gstin__", "note": ""}
+{"form_id": "gst_pmt06_challan", "field_id": "gstin", "lang": "en", "text": "__gstin_bad__", "expected": null, "note": "wrong checksum - must be rejected"}

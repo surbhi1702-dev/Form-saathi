@@ -1,0 +1,269 @@
+{
+  "id": "gst_pmt06_challan",
+  "category": "tax",
+  "output": "form",
+  "title": {
+    "en": "GST payment challan (PMT-06)",
+    "ta": "GST கட்டணச் சலான் (PMT-06)",
+    "hi": "GST भुगतान चालान (PMT-06)",
+    "or": "GST ଦେୟ ଚାଲାନ (PMT-06)"
+  },
+  "description": {
+    "en": "Work out the amounts for each tax head before creating your challan on the GST portal.",
+    "ta": "GST இணையதளத்தில் சலான் உருவாக்கும் முன் ஒவ்வொரு வரித் தலைப்புக்கும் தொகையைக் கணக்கிட.",
+    "hi": "GST पोर्टल पर चालान बनाने से पहले हर टैक्स हेड की राशि तय करें।",
+    "or": "GST ପୋର୍ଟାଲରେ ଚାଲାନ ତିଆରି ପୂର୍ବରୁ ପ୍ରତ୍ୟେକ ଟିକସ ଶୀର୍ଷର ରାଶି ହିସାବ କରନ୍ତୁ।"
+  },
+  "department": "GST portal (gst.gov.in)",
+  "keywords": [
+    "gst",
+    "challan",
+    "pmt-06",
+    "pmt06",
+    "gst payment",
+    "ஜிஎஸ்டி",
+    "जीएसटी"
+  ],
+  "knowledge_tags": [
+    "gst_challan"
+  ],
+  "submit_note": "Log in to the GST portal, go to Services > Payments > Create Challan, and enter these amounts. A generated challan (CPIN) is valid for 15 days.",
+  "fields": [
+    {
+      "id": "gstin",
+      "type": "gstin",
+      "label": {
+        "en": "GSTIN"
+      },
+      "question": {
+        "en": "What is your 15-character GSTIN?"
+      },
+      "explain": "Your GST registration number, printed on your GST certificate."
+    },
+    {
+      "id": "challan_reason",
+      "type": "choice",
+      "label": {
+        "en": "Reason for challan"
+      },
+      "question": {
+        "en": "Why are you paying?"
+      },
+      "explain": "Pick 'Monthly payment for quarterly return' if you are in the QRMP scheme and paying for the first or second month of a quarter. Otherwise pick 'Any other payment'.",
+      "options": [
+        "Monthly payment for quarterly return (QRMP)",
+        "Any other payment"
+      ]
+    },
+    {
+      "id": "tax_period",
+      "type": "month_year",
+      "label": {
+        "en": "Tax period"
+      },
+      "question": {
+        "en": "Which month is this payment for? (like 09/2026)"
+      },
+      "explain": "The month whose tax you are paying.",
+      "show_if": {
+        "field": "challan_reason",
+        "equals": "Monthly payment for quarterly return (QRMP)"
+      }
+    },
+    {
+      "id": "igst_tax",
+      "type": "amount",
+      "label": {
+        "en": "IGST - tax"
+      },
+      "question": {
+        "en": "How much IGST (tax on sales to other states) do you need to pay? Say 0 if none."
+      },
+      "explain": "IGST is charged on sales to customers in another state."
+    },
+    {
+      "id": "cgst_tax",
+      "type": "amount",
+      "label": {
+        "en": "CGST - tax"
+      },
+      "question": {
+        "en": "How much CGST do you need to pay? Say 0 if none."
+      },
+      "explain": "On sales within your own state, tax is split equally into CGST (central) and SGST (state)."
+    },
+    {
+      "id": "sgst_tax",
+      "type": "amount",
+      "label": {
+        "en": "SGST - tax"
+      },
+      "question": {
+        "en": "How much SGST do you need to pay? Say 0 if none."
+      },
+      "explain": "The state half of tax on sales within your state. It is normally equal to CGST."
+    },
+    {
+      "id": "cess",
+      "type": "amount",
+      "label": {
+        "en": "Cess"
+      },
+      "question": {
+        "en": "Any compensation cess to pay? Say 0 if none."
+      },
+      "explain": "Cess applies only to specific goods such as tobacco products and some vehicles. Most small businesses pay 0."
+    },
+    {
+      "id": "has_interest",
+      "type": "yesno",
+      "label": {
+        "en": "Paying interest"
+      },
+      "question": {
+        "en": "Are you paying interest for late payment?"
+      },
+      "explain": "Interest is charged when tax is paid after the due date.",
+      "options": [
+        "Yes",
+        "No"
+      ]
+    },
+    {
+      "id": "interest_cgst",
+      "type": "amount",
+      "label": {
+        "en": "Interest - CGST"
+      },
+      "question": {
+        "en": "How much interest under CGST?"
+      },
+      "explain": "Interest on the late CGST amount.",
+      "show_if": {
+        "field": "has_interest",
+        "equals": "Yes"
+      }
+    },
+    {
+      "id": "interest_sgst",
+      "type": "amount",
+      "label": {
+        "en": "Interest - SGST"
+      },
+      "question": {
+        "en": "How much interest under SGST?"
+      },
+      "explain": "Interest on the late SGST amount.",
+      "show_if": {
+        "field": "has_interest",
+        "equals": "Yes"
+      }
+    },
+    {
+      "id": "interest_igst",
+      "type": "amount",
+      "label": {
+        "en": "Interest - IGST"
+      },
+      "question": {
+        "en": "How much interest under IGST?"
+      },
+      "explain": "Interest on the late IGST amount.",
+      "show_if": {
+        "field": "has_interest",
+        "equals": "Yes"
+      }
+    },
+    {
+      "id": "late_fee_total",
+      "type": "amount",
+      "label": {
+        "en": "Late fee (total)"
+      },
+      "question": {
+        "en": "Any late fee for filing a return late? Give the total, or 0."
+      },
+      "explain": "Late fee for delayed returns is split equally between CGST and SGST - we split it for you."
+    },
+    {
+      "id": "payment_mode",
+      "type": "choice",
+      "label": {
+        "en": "Mode of payment"
+      },
+      "question": {
+        "en": "How will you pay?"
+      },
+      "explain": "E-payment is instant. Over-the-counter payment is only allowed for smaller amounts at authorised banks.",
+      "options": [
+        "E-payment (net banking / card / UPI)",
+        "Over the counter",
+        "NEFT/RTGS"
+      ]
+    }
+  ],
+  "computed": [
+    {
+      "id": "late_fee_cgst",
+      "label": {
+        "en": "Late fee - CGST"
+      },
+      "fn": "half",
+      "args": [
+        "late_fee_total"
+      ]
+    },
+    {
+      "id": "late_fee_sgst",
+      "label": {
+        "en": "Late fee - SGST"
+      },
+      "fn": "half",
+      "args": [
+        "late_fee_total"
+      ]
+    },
+    {
+      "id": "gst_total",
+      "label": {
+        "en": "Total challan amount"
+      },
+      "fn": "sum",
+      "args": [
+        "igst_tax",
+        "cgst_tax",
+        "sgst_tax",
+        "cess",
+        "interest_cgst",
+        "interest_sgst",
+        "interest_igst",
+        "late_fee_total"
+      ]
+    },
+    {
+      "id": "gst_total_words",
+      "label": {
+        "en": "Total in words"
+      },
+      "fn": "amount_in_words_of_sum",
+      "args": [
+        "igst_tax",
+        "cgst_tax",
+        "sgst_tax",
+        "cess",
+        "interest_cgst",
+        "interest_sgst",
+        "interest_igst",
+        "late_fee_total"
+      ]
+    }
+  ],
+  "checks": [
+    "gst_cgst_sgst_equal"
+  ],
+  "documents": [
+    "GST portal login (username and password)",
+    "Your sales and purchase summary for the period",
+    "Net banking / UPI access for payment"
+  ]
+}

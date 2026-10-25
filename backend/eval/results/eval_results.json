@@ -1,0 +1,213 @@
+{
+  "meta": {
+    "date": "2026-10-25 11:04",
+    "model": "openai/gpt-oss-120b"
+  },
+  "results": {
+    "rules": {
+      "intent": {
+        "n": 92,
+        "accuracy": 85.9,
+        "by_language": {
+          "en": {
+            "n": 54,
+            "accuracy": 83.3
+          },
+          "hi": {
+            "n": 15,
+            "accuracy": 80.0
+          },
+          "or": {
+            "n": 9,
+            "accuracy": 100.0
+          },
+          "ta": {
+            "n": 14,
+            "accuracy": 92.9
+          }
+        },
+        "by_class": {
+          "answer": {
+            "n": 34,
+            "recall": 100.0
+          },
+          "correct": {
+            "n": 16,
+            "recall": 87.5
+          },
+          "explain": {
+            "n": 26,
+            "recall": 84.6
+          },
+          "skip": {
+            "n": 16,
+            "recall": 56.2
+          }
+        },
+        "confusion": {
+          "correct->answer": 2,
+          "explain->answer": 4,
+          "skip->answer": 7
+        }
+      },
+      "extraction": {
+        "n": 72,
+        "accuracy": 80.6,
+        "valid_inputs_extracted_correctly": 77.4,
+        "invalid_inputs_rejected": 100.0,
+        "outcomes": {
+          "correct": 48,
+          "correctly_rejected": 10,
+          "wrongly_rejected": 14
+        },
+        "by_language": {
+          "en": {
+            "n": 56,
+            "accuracy": 85.7
+          },
+          "hi": {
+            "n": 5,
+            "accuracy": 60.0
+          },
+          "or": {
+            "n": 3,
+            "accuracy": 66.7
+          },
+          "ta": {
+            "n": 8,
+            "accuracy": 62.5
+          }
+        }
+      },
+      "rag": {
+        "filtered_by_form": {
+          "n": 43,
+          "hit_at_1": 95.3,
+          "recall_at_3": 100.0,
+          "mrr": 0.977
+        },
+        "all_notes": {
+          "n": 43,
+          "hit_at_1": 86.0,
+          "recall_at_3": 95.3,
+          "mrr": 0.907
+        }
+      },
+      "turns": {
+        "turns": 25,
+        "median_ms": 4,
+        "p95_ms": 5,
+        "avg_llm_calls_per_turn": 0.0,
+        "turns_with_no_llm_call": 100.0
+      },
+      "llm": {
+        "calls": 0,
+        "errors": 0,
+        "median_call_ms": null
+      },
+      "seconds": 1.1
+    },
+    "llm": {
+      "intent": {
+        "n": 92,
+        "accuracy": 96.7,
+        "by_language": {
+          "en": {
+            "n": 54,
+            "accuracy": 94.4
+          },
+          "hi": {
+            "n": 15,
+            "accuracy": 100.0
+          },
+          "or": {
+            "n": 9,
+            "accuracy": 100.0
+          },
+          "ta": {
+            "n": 14,
+            "accuracy": 100.0
+          }
+        },
+        "by_class": {
+          "answer": {
+            "n": 34,
+            "recall": 100.0
+          },
+          "correct": {
+            "n": 16,
+            "recall": 100.0
+          },
+          "explain": {
+            "n": 26,
+            "recall": 88.5
+          },
+          "skip": {
+            "n": 16,
+            "recall": 100.0
+          }
+        },
+        "confusion": {
+          "explain->answer": 3
+        }
+      },
+      "extraction": {
+        "n": 72,
+        "accuracy": 93.1,
+        "valid_inputs_extracted_correctly": 93.5,
+        "invalid_inputs_rejected": 90.0,
+        "outcomes": {
+          "correct": 58,
+          "correctly_rejected": 9,
+          "wrongly_rejected": 4,
+          "wrongly_accepted": 1
+        },
+        "by_language": {
+          "en": {
+            "n": 56,
+            "accuracy": 94.6
+          },
+          "hi": {
+            "n": 5,
+            "accuracy": 80.0
+          },
+          "or": {
+            "n": 3,
+            "accuracy": 100.0
+          },
+          "ta": {
+            "n": 8,
+            "accuracy": 87.5
+          }
+        }
+      },
+      "rag": {
+        "filtered_by_form": {
+          "n": 43,
+          "hit_at_1": 95.3,
+          "recall_at_3": 100.0,
+          "mrr": 0.977
+        },
+        "all_notes": {
+          "n": 43,
+          "hit_at_1": 86.0,
+          "recall_at_3": 95.3,
+          "mrr": 0.907
+        }
+      },
+      "turns": {
+        "turns": 25,
+        "median_ms": 1585,
+        "p95_ms": 5926,
+        "avg_llm_calls_per_turn": 1.04,
+        "turns_with_no_llm_call": 40.0
+      },
+      "llm": {
+        "calls": 76,
+        "errors": 0,
+        "median_call_ms": 753
+      },
+      "seconds": 182.1
+    }
+  }
+}

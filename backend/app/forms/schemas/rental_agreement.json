@@ -1,0 +1,293 @@
+{
+  "id": "rental_agreement",
+  "category": "property",
+  "output": "agreement",
+  "title": {
+    "en": "Rental agreement",
+    "ta": "வாடகை ஒப்பந்தம்",
+    "hi": "किराया अनुबंध",
+    "or": "ଭଡା ଚୁକ୍ତିନାମା"
+  },
+  "description": {
+    "en": "Create a draft rent agreement between owner and tenant.",
+    "ta": "உரிமையாளர் மற்றும் குடியிருப்பவருக்கு இடையே வாடகை ஒப்பந்த வரைவை உருவாக்க.",
+    "hi": "मालिक और किरायेदार के बीच किराया अनुबंध का मसौदा बनाएं।",
+    "or": "ମାଲିକ ଓ ଭଡାଟିଆଙ୍କ ମଧ୍ୟରେ ଭଡା ଚୁକ୍ତିନାମାର ଡ୍ରାଫ୍ଟ ପ୍ରସ୍ତୁତ କରନ୍ତୁ।"
+  },
+  "department": "Owner and tenant (printed on stamp paper)",
+  "keywords": [
+    "rent",
+    "rental",
+    "rent agreement",
+    "lease",
+    "tenant",
+    "வாடகை",
+    "किराया",
+    "किरायेदार",
+    "ଭଡା"
+  ],
+  "knowledge_tags": [
+    "rental"
+  ],
+  "submit_note": "Print the final agreement on stamp paper of the value your state requires, sign on every page with two witnesses, and keep one copy each. Some states require the tenancy to be registered or reported to a Rent Authority.",
+  "fields": [
+    {
+      "id": "owner_name",
+      "type": "name",
+      "label": {
+        "en": "Owner (landlord) name"
+      },
+      "question": {
+        "en": "What is the owner's full name?"
+      },
+      "explain": "The landlord who owns the property."
+    },
+    {
+      "id": "owner_father",
+      "type": "name",
+      "label": {
+        "en": "Owner's father / spouse name"
+      },
+      "question": {
+        "en": "What is the owner's father's or spouse's name?"
+      },
+      "explain": "Used as S/o, D/o or W/o in the agreement."
+    },
+    {
+      "id": "owner_address",
+      "type": "address",
+      "label": {
+        "en": "Owner's address"
+      },
+      "question": {
+        "en": "What is the owner's address?"
+      },
+      "explain": "Where the owner lives (may be different from the rented property).",
+      "min_length": 10
+    },
+    {
+      "id": "tenant_name",
+      "type": "name",
+      "label": {
+        "en": "Tenant name"
+      },
+      "question": {
+        "en": "What is the tenant's full name?"
+      },
+      "explain": "The person renting the property."
+    },
+    {
+      "id": "tenant_father",
+      "type": "name",
+      "label": {
+        "en": "Tenant's father / spouse name"
+      },
+      "question": {
+        "en": "What is the tenant's father's or spouse's name?"
+      },
+      "explain": "Used as S/o, D/o or W/o in the agreement."
+    },
+    {
+      "id": "tenant_permanent_address",
+      "type": "address",
+      "label": {
+        "en": "Tenant's permanent address"
+      },
+      "question": {
+        "en": "What is the tenant's permanent (native) address?"
+      },
+      "explain": "The tenant's permanent home address, not the rented one.",
+      "min_length": 10
+    },
+    {
+      "id": "property_address",
+      "type": "address",
+      "label": {
+        "en": "Rented property address"
+      },
+      "question": {
+        "en": "What is the full address of the property being rented?"
+      },
+      "explain": "Door number, floor, street, area, city.",
+      "min_length": 10
+    },
+    {
+      "id": "purpose",
+      "type": "choice",
+      "label": {
+        "en": "Purpose"
+      },
+      "question": {
+        "en": "Is it for living (residential) or business (commercial)?"
+      },
+      "explain": "Commercial rentals usually have different deposit and notice terms.",
+      "options": [
+        "Residential",
+        "Commercial"
+      ]
+    },
+    {
+      "id": "furnishing",
+      "type": "choice",
+      "label": {
+        "en": "Furnishing"
+      },
+      "question": {
+        "en": "Is it unfurnished, semi-furnished or fully furnished?"
+      },
+      "explain": "Semi-furnished usually means fans, lights and wardrobes; fully furnished includes beds, sofa and appliances.",
+      "options": [
+        "Unfurnished",
+        "Semi-furnished",
+        "Fully furnished"
+      ]
+    },
+    {
+      "id": "monthly_rent",
+      "type": "amount",
+      "label": {
+        "en": "Monthly rent"
+      },
+      "question": {
+        "en": "What is the monthly rent?"
+      },
+      "explain": "Rent per month, excluding maintenance unless you say it's included.",
+      "min": 1
+    },
+    {
+      "id": "security_deposit",
+      "type": "amount",
+      "label": {
+        "en": "Security deposit"
+      },
+      "question": {
+        "en": "How much is the security deposit (advance)?"
+      },
+      "explain": "Refundable money the tenant pays at the start, returned at the end after deducting unpaid dues or damages."
+    },
+    {
+      "id": "rent_due_day",
+      "type": "number",
+      "label": {
+        "en": "Rent due day"
+      },
+      "question": {
+        "en": "On which day of each month should rent be paid? (1 to 28)"
+      },
+      "explain": "For example 5 means rent is due by the 5th of every month.",
+      "min": 1,
+      "max": 28
+    },
+    {
+      "id": "start_date",
+      "type": "date",
+      "label": {
+        "en": "Start date"
+      },
+      "question": {
+        "en": "From which date does the tenancy start?"
+      },
+      "explain": "The date the tenant moves in or the agreement begins."
+    },
+    {
+      "id": "duration_months",
+      "type": "number",
+      "label": {
+        "en": "Duration (months)"
+      },
+      "question": {
+        "en": "For how many months? (11 is the most common)"
+      },
+      "explain": "Agreements of 11 months are common because leases of 12 months or more must be registered under the Registration Act. Check your state's rule.",
+      "min": 1,
+      "max": 60
+    },
+    {
+      "id": "notice_period_months",
+      "type": "number",
+      "label": {
+        "en": "Notice period (months)"
+      },
+      "question": {
+        "en": "How many months' notice must either side give before leaving?"
+      },
+      "explain": "Usually 1 or 2 months.",
+      "min": 1,
+      "max": 6
+    },
+    {
+      "id": "rent_increase_percent",
+      "type": "number",
+      "label": {
+        "en": "Rent increase on renewal (%)"
+      },
+      "question": {
+        "en": "By what percent will rent increase on renewal? (5 to 10 is common, 0 for none)"
+      },
+      "explain": "The yearly increase both sides agree on.",
+      "min": 0,
+      "max": 50
+    },
+    {
+      "id": "maintenance",
+      "type": "choice",
+      "label": {
+        "en": "Maintenance charges"
+      },
+      "question": {
+        "en": "Is maintenance included in the rent, or paid separately by the tenant?"
+      },
+      "explain": "Apartment maintenance / society charges.",
+      "options": [
+        "Included in rent",
+        "Paid separately by tenant"
+      ]
+    },
+    {
+      "use": "place"
+    }
+  ],
+  "computed": [
+    {
+      "id": "end_date",
+      "label": {
+        "en": "End date"
+      },
+      "fn": "add_months",
+      "args": [
+        "start_date",
+        "duration_months"
+      ]
+    },
+    {
+      "id": "rent_in_words",
+      "label": {
+        "en": "Rent in words"
+      },
+      "fn": "amount_in_words",
+      "args": [
+        "monthly_rent"
+      ]
+    },
+    {
+      "id": "deposit_in_words",
+      "label": {
+        "en": "Deposit in words"
+      },
+      "fn": "amount_in_words",
+      "args": [
+        "security_deposit"
+      ]
+    }
+  ],
+  "checks": [
+    "rent_deposit_cap"
+  ],
+  "documents": [
+    "Stamp paper of the value required in your state",
+    "ID proof of owner and tenant",
+    "Property ownership proof (owner)",
+    "Two witnesses with ID",
+    "Passport-size photos of both parties"
+  ]
+}

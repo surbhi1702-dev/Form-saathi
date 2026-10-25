@@ -1,0 +1,93 @@
+{
+  "id": "bank_cash_withdrawal",
+  "category": "bank",
+  "output": "form",
+  "title": {
+    "en": "Bank cash withdrawal slip",
+    "ta": "வங்கி பணம் எடுக்கும் சீட்டு",
+    "hi": "बैंक नकद निकासी पर्ची",
+    "or": "ବ୍ୟାଙ୍କ ନଗଦ ଉଠାଣ ସ୍ଲିପ୍"
+  },
+  "description": {
+    "en": "Withdraw cash from your own account at your branch counter.",
+    "ta": "உங்கள் கிளைக் கவுண்டரில் உங்கள் கணக்கிலிருந்து பணம் எடுக்க.",
+    "hi": "अपनी शाखा के काउंटर से अपने खाते से नकद निकालें।",
+    "or": "ଆପଣଙ୍କ ଶାଖା କାଉଣ୍ଟରରୁ ନିଜ ଖାତାରୁ ନଗଦ ଉଠାନ୍ତୁ।"
+  },
+  "department": "Your bank branch",
+  "keywords": [
+    "withdraw",
+    "withdrawal",
+    "cash withdraw",
+    "take money",
+    "பணம் எடு",
+    "पैसे निकाल",
+    "निकासी",
+    "ଟଙ୍କା ଉଠା"
+  ],
+  "knowledge_tags": [
+    "bank_withdrawal"
+  ],
+  "submit_note": "Withdrawal slips usually work only for the account holder at the home branch. Sign exactly as in the bank's records and carry your passbook.",
+  "fields": [
+    {
+      "use": "branch_name"
+    },
+    {
+      "use": "account_number"
+    },
+    {
+      "use": "full_name",
+      "label": {
+        "en": "Account holder name",
+        "ta": "கணக்கு வைத்திருப்பவர் பெயர்",
+        "hi": "खाताधारक का नाम",
+        "or": "ଖାତାଧାରୀଙ୍କ ନାମ"
+      }
+    },
+    {
+      "id": "amount",
+      "type": "amount",
+      "label": {
+        "en": "Amount to withdraw"
+      },
+      "question": {
+        "en": "How much money do you want to withdraw?"
+      },
+      "explain": "Write the amount in figures. The amount in words is filled in for you below - it must match the figures exactly.",
+      "min": 1
+    },
+    {
+      "id": "withdrawal_date",
+      "type": "date",
+      "label": {
+        "en": "Date"
+      },
+      "question": {
+        "en": "What date are you withdrawing on? (say 'today' if it's today)"
+      },
+      "explain": "The date you hand the slip to the cashier.",
+      "rule": "within_months:1"
+    },
+    {
+      "use": "mobile",
+      "required": false
+    }
+  ],
+  "computed": [
+    {
+      "id": "amount_in_words",
+      "label": {
+        "en": "Amount in words"
+      },
+      "fn": "amount_in_words",
+      "args": [
+        "amount"
+      ]
+    }
+  ],
+  "documents": [
+    "Your passbook",
+    "An ID proof, in case the branch asks"
+  ]
+}

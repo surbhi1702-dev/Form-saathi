@@ -1,0 +1,205 @@
+{
+  "id": "property_tax",
+  "category": "property",
+  "output": "form",
+  "title": {
+    "en": "Property tax - new assessment / name transfer",
+    "ta": "சொத்து வரி - புதிய மதிப்பீடு / பெயர் மாற்றம்",
+    "hi": "संपत्ति कर - नया मूल्यांकन / नाम परिवर्तन",
+    "or": "ସମ୍ପତ୍ତି କର - ନୂଆ ମୂଲ୍ୟାଙ୍କନ / ନାମ ପରିବର୍ତ୍ତନ"
+  },
+  "description": {
+    "en": "Get a new property assessed for tax, or move the tax record to the new owner's name.",
+    "ta": "புதிய சொத்துக்கு வரி மதிப்பீடு பெற, அல்லது வரிப் பதிவை புதிய உரிமையாளர் பெயருக்கு மாற்ற.",
+    "hi": "नई संपत्ति का कर मूल्यांकन कराएं, या कर रिकॉर्ड नए मालिक के नाम करें।",
+    "or": "ନୂଆ ସମ୍ପତ୍ତିର କର ମୂଲ୍ୟାଙ୍କନ କରାନ୍ତୁ, ବା କର ରେକର୍ଡ ନୂଆ ମାଲିକଙ୍କ ନାମରେ କରନ୍ତୁ।"
+  },
+  "department": "Municipal Corporation (e.g. Greater Chennai Corporation)",
+  "keywords": [
+    "property tax",
+    "house tax",
+    "name transfer",
+    "assessment",
+    "சொத்து வரி",
+    "வீட்டு வரி",
+    "संपत्ति कर",
+    "हाउस टैक्स",
+    "ସମ୍ପତ୍ତି କର"
+  ],
+  "knowledge_tags": [
+    "property_tax"
+  ],
+  "submit_note": "Apply on the Corporation's online portal or at the zonal/revenue office. For a name transfer, apply soon after registration - the old owner's name stays on the bill until you do.",
+  "fields": [
+    {
+      "id": "purpose",
+      "type": "choice",
+      "label": {
+        "en": "Purpose"
+      },
+      "question": {
+        "en": "What do you need?"
+      },
+      "explain": "New assessment is for a newly built property that has never been taxed. Name transfer is when you bought or inherited a property that is already taxed.",
+      "options": [
+        "New assessment",
+        "Name transfer",
+        "Address / details correction"
+      ]
+    },
+    {
+      "id": "existing_assessment_no",
+      "type": "text",
+      "label": {
+        "en": "Existing assessment number"
+      },
+      "question": {
+        "en": "What is the current property tax assessment number? (on the old tax receipt)"
+      },
+      "explain": "The number on the existing property tax receipt.",
+      "latin_only": true,
+      "show_if": {
+        "field": "purpose",
+        "not_equals": "New assessment"
+      }
+    },
+    {
+      "use": "full_name",
+      "label": {
+        "en": "Owner name",
+        "ta": "உரிமையாளர் பெயர்",
+        "hi": "मालिक का नाम",
+        "or": "ମାଲିକଙ୍କ ନାମ"
+      }
+    },
+    {
+      "use": "father_or_spouse_name"
+    },
+    {
+      "use": "mobile"
+    },
+    {
+      "use": "email"
+    },
+    {
+      "id": "property_address",
+      "type": "address",
+      "label": {
+        "en": "Property address"
+      },
+      "question": {
+        "en": "What is the full address of the property?"
+      },
+      "explain": "Door number, street, area and city of the property.",
+      "min_length": 10
+    },
+    {
+      "use": "pincode"
+    },
+    {
+      "id": "zone_ward",
+      "type": "text",
+      "label": {
+        "en": "Zone / ward"
+      },
+      "question": {
+        "en": "Which zone and ward is the property in? (say 'skip' if you don't know)"
+      },
+      "explain": "The Corporation zone and ward number. It is on old tax receipts; the office can tell you if you don't know.",
+      "latin_only": true,
+      "required": false
+    },
+    {
+      "id": "usage",
+      "type": "choice",
+      "label": {
+        "en": "Usage"
+      },
+      "question": {
+        "en": "How is the property used?"
+      },
+      "explain": "Commercial use is taxed at a higher rate.",
+      "options": [
+        "Residential",
+        "Commercial",
+        "Mixed"
+      ]
+    },
+    {
+      "id": "occupancy",
+      "type": "choice",
+      "label": {
+        "en": "Occupancy"
+      },
+      "question": {
+        "en": "Do you live in it yourself, or is it rented out?"
+      },
+      "explain": "Rented-out properties can be taxed differently from owner-occupied ones.",
+      "options": [
+        "Owner-occupied",
+        "Rented out",
+        "Vacant"
+      ]
+    },
+    {
+      "id": "plinth_area_sqft",
+      "type": "number",
+      "label": {
+        "en": "Plinth area (sq. ft.)"
+      },
+      "question": {
+        "en": "What is the plinth (built-up) area in square feet?"
+      },
+      "explain": "The built-up floor area of the building.",
+      "max": 1000000
+    },
+    {
+      "id": "year_of_construction",
+      "type": "number",
+      "label": {
+        "en": "Year of construction"
+      },
+      "question": {
+        "en": "Which year was the building completed?"
+      },
+      "explain": "Older buildings get a depreciation reduction in many cities.",
+      "min": 1850,
+      "max": 2100
+    },
+    {
+      "id": "sale_deed_number",
+      "type": "text",
+      "label": {
+        "en": "Document (deed) number"
+      },
+      "question": {
+        "en": "What is the registered document number of your sale/gift deed? (like 1234/2025)"
+      },
+      "explain": "The number given by the Sub-Registrar office when your deed was registered.",
+      "latin_only": true
+    },
+    {
+      "id": "deed_registration_date",
+      "type": "date",
+      "label": {
+        "en": "Date of registration"
+      },
+      "question": {
+        "en": "When was the deed registered?"
+      },
+      "explain": "Date on which the deed was registered.",
+      "rule": "past"
+    },
+    {
+      "use": "place"
+    }
+  ],
+  "documents": [
+    "Registered sale/gift/settlement deed",
+    "Approved building plan (for new assessment)",
+    "Completion certificate (for new buildings)",
+    "Previous tax receipt (for name transfer)",
+    "ID proof",
+    "EB card / bill (some offices ask for it)"
+  ]
+}

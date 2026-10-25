@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+.venv/
+.env
+node_modules/
+dist/
+finetune/formsaathi-simplifier-lora/
+finetune/*.zip
+finetune/eval_results.json
+backend/metrics/
+backend/eval/results/failures_*.jsonl

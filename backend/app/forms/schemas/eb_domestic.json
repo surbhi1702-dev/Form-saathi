@@ -1,0 +1,176 @@
+{
+  "id": "eb_domestic",
+  "category": "utilities",
+  "output": "form",
+  "title": {
+    "en": "Electricity connection - domestic (TANGEDCO)",
+    "ta": "வீட்டு மின் இணைப்பு (TANGEDCO)",
+    "hi": "घरेलू बिजली कनेक्शन (TANGEDCO)",
+    "or": "ଘରୋଇ ବିଦ୍ୟୁତ୍ ସଂଯୋଗ (TANGEDCO)"
+  },
+  "description": {
+    "en": "Apply for a new electricity connection for a house or flat.",
+    "ta": "வீடு அல்லது அடுக்ககத்திற்கு புதிய மின் இணைப்புக்கு விண்ணப்பிக்க.",
+    "hi": "घर या फ्लैट के लिए नए बिजली कनेक्शन का आवेदन।",
+    "or": "ଘର ବା ଫ୍ଲାଟ ପାଇଁ ନୂଆ ବିଦ୍ୟୁତ୍ ସଂଯୋଗ ଆବେଦନ।"
+  },
+  "department": "TANGEDCO / TNPDCL (Tamil Nadu electricity distribution)",
+  "keywords": [
+    "electricity",
+    "eb",
+    "eb connection",
+    "current connection",
+    "tangedco",
+    "tneb",
+    "power connection",
+    "மின் இணைப்பு",
+    "கரண்ட்",
+    "बिजली",
+    "ବିଦ୍ୟୁତ୍",
+    "house",
+    "home",
+    "domestic",
+    "வீடு",
+    "घर",
+    "ଘର"
+  ],
+  "knowledge_tags": [
+    "electricity"
+  ],
+  "submit_note": "Apply online on the TANGEDCO/TNPDCL new-connection portal or at your section office. Keep the application number to track it. Other states' electricity boards ask for very similar details.",
+  "fields": [
+    {
+      "use": "full_name",
+      "label": {
+        "en": "Applicant name",
+        "ta": "விண்ணப்பதாரர் பெயர்",
+        "hi": "आवेदक का नाम",
+        "or": "ଆବେଦକଙ୍କ ନାମ"
+      }
+    },
+    {
+      "use": "father_or_spouse_name"
+    },
+    {
+      "use": "mobile"
+    },
+    {
+      "use": "email"
+    },
+    {
+      "use": "aadhaar"
+    },
+    {
+      "id": "premises_address",
+      "type": "address",
+      "label": {
+        "en": "Address of premises"
+      },
+      "question": {
+        "en": "What is the full address of the place that needs the connection?"
+      },
+      "explain": "The address where the meter will be installed (door number, street, area, city).",
+      "min_length": 10
+    },
+    {
+      "use": "pincode"
+    },
+    {
+      "id": "ownership",
+      "type": "choice",
+      "label": {
+        "en": "Ownership of premises"
+      },
+      "question": {
+        "en": "Do you own this place, or are you renting it?"
+      },
+      "explain": "Tenants can apply too, but need the owner's consent letter and a rent agreement.",
+      "options": [
+        "Owner",
+        "Tenant"
+      ]
+    },
+    {
+      "id": "owner_name",
+      "type": "name",
+      "label": {
+        "en": "Name of the owner"
+      },
+      "question": {
+        "en": "What is the owner's name?"
+      },
+      "explain": "The owner of the premises, as on the sale deed or patta.",
+      "show_if": {
+        "field": "ownership",
+        "equals": "Tenant"
+      }
+    },
+    {
+      "id": "building_type",
+      "type": "choice",
+      "label": {
+        "en": "Type of building"
+      },
+      "question": {
+        "en": "What kind of building is it?"
+      },
+      "explain": "Larger buildings and apartments may need a completion certificate or plan approval.",
+      "options": [
+        "Independent house",
+        "Flat in apartment",
+        "Other"
+      ]
+    },
+    {
+      "id": "phase",
+      "type": "choice",
+      "label": {
+        "en": "Supply type"
+      },
+      "question": {
+        "en": "Single phase or three phase supply?"
+      },
+      "explain": "Single phase is enough for most homes (lights, fans, fridge, TV). Three phase is for heavy loads like several ACs, big motors or machines.",
+      "options": [
+        "Single phase",
+        "Three phase"
+      ]
+    },
+    {
+      "id": "connected_load_kw",
+      "type": "number",
+      "label": {
+        "en": "Connected load (kW)"
+      },
+      "question": {
+        "en": "What is the total connected load in kW? If you don't know, just list your appliances (for example '4 fans, 1 fridge, 1 AC') and I'll estimate it."
+      },
+      "explain": "Connected load is the total power of all appliances you'll use, in kilowatts (1 kW = 1000 watts). Example: 4 fans (75 W each) + 6 LED lights (15 W) + fridge (200 W) + TV (100 W) = about 0.69 kW.",
+      "min": 0.1,
+      "max": 50,
+      "allow_appliances": true
+    },
+    {
+      "id": "plinth_area_sqft",
+      "type": "number",
+      "label": {
+        "en": "Built-up area (sq. ft.)"
+      },
+      "question": {
+        "en": "What is the built-up area of the premises in square feet?"
+      },
+      "explain": "The covered floor area, as on your building plan or property tax receipt.",
+      "max": 100000
+    },
+    {
+      "use": "place"
+    }
+  ],
+  "documents": [
+    "Ownership proof: sale deed, patta or latest property tax receipt",
+    "ID proof (Aadhaar)",
+    "Passport-size photo",
+    "If tenant: owner's consent (NOC) letter and rent agreement",
+    "Building completion certificate / plan approval, where required for apartments and larger buildings"
+  ]
+}

@@ -1,0 +1,192 @@
+{
+  "id": "bank_savings_account",
+  "category": "bank",
+  "output": "form",
+  "title": {
+    "en": "Savings account opening form",
+    "ta": "சேமிப்புக் கணக்கு தொடங்கும் படிவம்",
+    "hi": "बचत खाता खोलने का फॉर्म",
+    "or": "ସଞ୍ଚୟ ଖାତା ଖୋଲିବା ଫର୍ମ"
+  },
+  "description": {
+    "en": "Open a new savings bank account.",
+    "ta": "புதிய சேமிப்பு வங்கிக் கணக்கைத் தொடங்க.",
+    "hi": "नया बचत बैंक खाता खोलें।",
+    "or": "ନୂଆ ସଞ୍ଚୟ ବ୍ୟାଙ୍କ ଖାତା ଖୋଲନ୍ତୁ।"
+  },
+  "department": "Your bank branch",
+  "keywords": [
+    "savings account",
+    "open account",
+    "new account",
+    "bank account",
+    "கணக்கு தொடங்க",
+    "खाता खोल",
+    "ଖାତା ଖୋଲ"
+  ],
+  "knowledge_tags": [
+    "bank_kyc",
+    "bank_savings"
+  ],
+  "submit_note": "Submit at the branch with your KYC documents. Basic Savings Bank Deposit (BSBD) accounts need no minimum balance - ask for one if that matters to you.",
+  "fields": [
+    {
+      "use": "branch_name"
+    },
+    {
+      "use": "full_name"
+    },
+    {
+      "use": "father_or_spouse_name"
+    },
+    {
+      "use": "date_of_birth"
+    },
+    {
+      "use": "gender"
+    },
+    {
+      "use": "marital_status"
+    },
+    {
+      "use": "mobile"
+    },
+    {
+      "use": "email"
+    },
+    {
+      "use": "address"
+    },
+    {
+      "use": "pincode"
+    },
+    {
+      "use": "aadhaar"
+    },
+    {
+      "use": "pan",
+      "required": false
+    },
+    {
+      "use": "occupation"
+    },
+    {
+      "id": "annual_income",
+      "type": "choice",
+      "label": {
+        "en": "Annual income"
+      },
+      "question": {
+        "en": "Roughly how much do you earn in a year?"
+      },
+      "explain": "An approximate range is enough. Banks use it to understand what kind of transactions to expect.",
+      "options": [
+        "Below 1 lakh",
+        "1 to 5 lakh",
+        "5 to 10 lakh",
+        "Above 10 lakh"
+      ]
+    },
+    {
+      "id": "nominee_wanted",
+      "type": "yesno",
+      "label": {
+        "en": "Add a nominee"
+      },
+      "question": {
+        "en": "Do you want to add a nominee? (recommended)"
+      },
+      "explain": "A nominee is the person who receives the money in this account if something happens to you. Adding one makes it much easier for your family to claim it.",
+      "options": [
+        "Yes",
+        "No"
+      ]
+    },
+    {
+      "id": "nominee_name",
+      "type": "name",
+      "label": {
+        "en": "Nominee name"
+      },
+      "question": {
+        "en": "What is the nominee's full name?"
+      },
+      "explain": "The person who should receive the money in this account.",
+      "show_if": {
+        "field": "nominee_wanted",
+        "equals": "Yes"
+      }
+    },
+    {
+      "id": "nominee_relation",
+      "type": "text",
+      "label": {
+        "en": "Relationship with nominee"
+      },
+      "question": {
+        "en": "How is the nominee related to you? (for example wife, son, mother)"
+      },
+      "explain": "Your relationship to the nominee.",
+      "latin_only": true,
+      "show_if": {
+        "field": "nominee_wanted",
+        "equals": "Yes"
+      }
+    },
+    {
+      "id": "nominee_dob",
+      "type": "date",
+      "label": {
+        "en": "Nominee date of birth"
+      },
+      "question": {
+        "en": "What is the nominee's date of birth?"
+      },
+      "explain": "If the nominee is a minor, the bank will also ask for a guardian's name.",
+      "rule": "past",
+      "show_if": {
+        "field": "nominee_wanted",
+        "equals": "Yes"
+      }
+    },
+    {
+      "id": "need_cheque_book",
+      "type": "yesno",
+      "label": {
+        "en": "Cheque book"
+      },
+      "question": {
+        "en": "Do you want a cheque book?"
+      },
+      "explain": "A book of cheques for paying people from this account.",
+      "options": [
+        "Yes",
+        "No"
+      ]
+    },
+    {
+      "id": "need_debit_card",
+      "type": "yesno",
+      "label": {
+        "en": "ATM/debit card"
+      },
+      "question": {
+        "en": "Do you want an ATM/debit card?"
+      },
+      "explain": "A card for withdrawing cash at ATMs and paying in shops.",
+      "options": [
+        "Yes",
+        "No"
+      ]
+    },
+    {
+      "use": "place"
+    }
+  ],
+  "documents": [
+    "Aadhaar card",
+    "PAN card or Form 60",
+    "Two recent passport-size photos",
+    "Address proof if your current address differs from your Aadhaar"
+  ]
+}

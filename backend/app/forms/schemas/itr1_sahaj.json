@@ -1,0 +1,227 @@
+{
+  "id": "itr1_sahaj",
+  "category": "tax",
+  "output": "form",
+  "title": {
+    "en": "Income tax return - ITR-1 (Sahaj)",
+    "ta": "வருமான வரி ரிட்டர்ன் - ITR-1 (சஹஜ்)",
+    "hi": "आयकर रिटर्न - ITR-1 (सहज)",
+    "or": "ଆୟକର ରିଟର୍ଣ୍ଣ - ITR-1 (ସହଜ)"
+  },
+  "description": {
+    "en": "Prepare the figures for a simple salaried income tax return.",
+    "ta": "சம்பளம் பெறுபவரின் எளிய வருமான வரி ரிட்டர்னுக்கான எண்களைத் தயாரிக்க.",
+    "hi": "वेतनभोगी व्यक्ति के सरल आयकर रिटर्न के आँकड़े तैयार करें।",
+    "or": "ଦରମାଭୋଗୀଙ୍କ ସରଳ ଆୟକର ରିଟର୍ଣ୍ଣ ପାଇଁ ହିସାବ ପ୍ରସ୍ତୁତ କରନ୍ତୁ।"
+  },
+  "department": "Income Tax e-filing portal (incometax.gov.in)",
+  "keywords": [
+    "income tax",
+    "itr",
+    "itr-1",
+    "itr1",
+    "sahaj",
+    "tax return",
+    "வருமான வரி",
+    "आयकर",
+    "इनकम टैक्स",
+    "ଆୟକର"
+  ],
+  "knowledge_tags": [
+    "itr1"
+  ],
+  "submit_note": "File on the Income Tax e-filing portal and e-verify within 30 days (Aadhaar OTP is easiest). Compare these figures with your Form 16 and AIS before submitting.",
+  "fields": [
+    {
+      "use": "pan"
+    },
+    {
+      "use": "full_name"
+    },
+    {
+      "use": "date_of_birth"
+    },
+    {
+      "use": "aadhaar"
+    },
+    {
+      "use": "mobile"
+    },
+    {
+      "use": "email"
+    },
+    {
+      "use": "address"
+    },
+    {
+      "use": "pincode"
+    },
+    {
+      "id": "assessment_year",
+      "type": "choice",
+      "label": {
+        "en": "Assessment year"
+      },
+      "question": {
+        "en": "Which year's income is this return for?"
+      },
+      "explain": "The assessment year is the year after you earned the income. Income earned April 2025 - March 2026 is filed for assessment year 2026-27.",
+      "options": [
+        "2026-27 (income earned Apr 2025 - Mar 2026)",
+        "2027-28 (income earned Apr 2026 - Mar 2027)"
+      ]
+    },
+    {
+      "id": "tax_regime",
+      "type": "choice",
+      "label": {
+        "en": "Tax regime"
+      },
+      "question": {
+        "en": "Which tax regime are you choosing?"
+      },
+      "explain": "The new regime is the default and has lower rates but almost no deductions. The old regime allows deductions like 80C (PF, LIC, PPF) and 80D (health insurance). Compare both before choosing.",
+      "options": [
+        "New regime",
+        "Old regime"
+      ]
+    },
+    {
+      "id": "gross_salary",
+      "type": "amount",
+      "label": {
+        "en": "Gross salary"
+      },
+      "question": {
+        "en": "What is your gross salary for the year? (from Form 16, Part B)"
+      },
+      "explain": "Total salary before any deductions, as shown in Part B of the Form 16 your employer gives you."
+    },
+    {
+      "id": "house_property_income",
+      "type": "amount",
+      "label": {
+        "en": "Income from house property"
+      },
+      "question": {
+        "en": "Any rent income from a house you own? Say 0 if none."
+      },
+      "explain": "Annual rent received from a house you let out. ITR-1 allows only one house property."
+    },
+    {
+      "id": "other_income",
+      "type": "amount",
+      "label": {
+        "en": "Income from other sources"
+      },
+      "question": {
+        "en": "Interest from savings or FDs and any other income? Say 0 if none."
+      },
+      "explain": "Bank interest, FD interest and similar income. Check your AIS on the e-filing portal - banks report interest there."
+    },
+    {
+      "id": "deduction_80c",
+      "type": "amount",
+      "label": {
+        "en": "Deduction under 80C"
+      },
+      "question": {
+        "en": "How much did you invest under 80C (PF, PPF, LIC, ELSS, tuition fees)? Max 1.5 lakh."
+      },
+      "explain": "80C covers PF, PPF, life insurance premium, ELSS funds, children's tuition fees and home loan principal, up to Rs. 1,50,000 in total.",
+      "max": 150000,
+      "show_if": {
+        "field": "tax_regime",
+        "equals": "Old regime"
+      }
+    },
+    {
+      "id": "deduction_80d",
+      "type": "amount",
+      "label": {
+        "en": "Deduction under 80D"
+      },
+      "question": {
+        "en": "How much health insurance premium did you pay? Say 0 if none."
+      },
+      "explain": "80D is for health insurance premiums for yourself, family and parents. Limits depend on age.",
+      "show_if": {
+        "field": "tax_regime",
+        "equals": "Old regime"
+      }
+    },
+    {
+      "id": "tds",
+      "type": "amount",
+      "label": {
+        "en": "TDS already deducted"
+      },
+      "question": {
+        "en": "How much tax (TDS) was already deducted? (Form 16 Part A / Form 26AS)"
+      },
+      "explain": "Tax your employer or bank already cut and paid to the government on your behalf."
+    },
+    {
+      "use": "account_number",
+      "label": {
+        "en": "Bank account for refund",
+        "ta": "திருப்பித் தொகைக்கான வங்கிக் கணக்கு",
+        "hi": "रिफंड के लिए बैंक खाता",
+        "or": "ଫେରସ୍ତ ପାଇଁ ବ୍ୟାଙ୍କ ଖାତା"
+      }
+    },
+    {
+      "use": "ifsc"
+    }
+  ],
+  "computed": [
+    {
+      "id": "standard_deduction",
+      "label": {
+        "en": "Standard deduction"
+      },
+      "fn": "itr_standard_deduction",
+      "args": [
+        "tax_regime",
+        "gross_salary"
+      ]
+    },
+    {
+      "id": "gross_total_income",
+      "label": {
+        "en": "Gross total income"
+      },
+      "fn": "itr_gross_total",
+      "args": [
+        "tax_regime",
+        "gross_salary",
+        "house_property_income",
+        "other_income"
+      ]
+    },
+    {
+      "id": "taxable_income_estimate",
+      "label": {
+        "en": "Taxable income (estimate)"
+      },
+      "fn": "itr_taxable",
+      "args": [
+        "tax_regime",
+        "gross_salary",
+        "house_property_income",
+        "other_income",
+        "deduction_80c",
+        "deduction_80d"
+      ]
+    }
+  ],
+  "checks": [
+    "itr1_eligibility"
+  ],
+  "documents": [
+    "Form 16 from your employer",
+    "Form 26AS and AIS (download from the e-filing portal)",
+    "Bank interest certificates",
+    "Investment proofs (only if using the old regime)"
+  ]
+}

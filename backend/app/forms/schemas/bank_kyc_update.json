@@ -1,0 +1,110 @@
+{
+  "id": "bank_kyc_update",
+  "category": "bank",
+  "output": "form",
+  "title": {
+    "en": "Bank KYC update form",
+    "ta": "வங்கி KYC புதுப்பிப்பு படிவம்",
+    "hi": "बैंक KYC अपडेट फॉर्म",
+    "or": "ବ୍ୟାଙ୍କ KYC ଅପଡେଟ୍ ଫର୍ମ"
+  },
+  "description": {
+    "en": "Update your identity and address details with your bank (re-KYC).",
+    "ta": "உங்கள் வங்கியில் அடையாள மற்றும் முகவரி விவரங்களைப் புதுப்பிக்க (மறு-KYC).",
+    "hi": "अपने बैंक में पहचान और पते की जानकारी अपडेट करें (री-KYC)।",
+    "or": "ଆପଣଙ୍କ ବ୍ୟାଙ୍କରେ ପରିଚୟ ଓ ଠିକଣା ବିବରଣୀ ଅପଡେଟ୍ କରନ୍ତୁ (ରି-KYC)।"
+  },
+  "department": "Your bank branch",
+  "keywords": [
+    "kyc",
+    "re-kyc",
+    "rekyc",
+    "bank update",
+    "update address bank",
+    "kyc update",
+    "கேஒய்சி",
+    "केवाईसी"
+  ],
+  "knowledge_tags": [
+    "bank_kyc"
+  ],
+  "submit_note": "Submit at your home branch with self-attested copies; carry originals for verification. Many banks also accept re-KYC online or through a self-declaration if nothing has changed.",
+  "fields": [
+    {
+      "use": "branch_name"
+    },
+    {
+      "use": "account_number"
+    },
+    {
+      "use": "full_name"
+    },
+    {
+      "use": "father_or_spouse_name"
+    },
+    {
+      "use": "date_of_birth"
+    },
+    {
+      "use": "gender"
+    },
+    {
+      "use": "mobile"
+    },
+    {
+      "use": "email"
+    },
+    {
+      "use": "address"
+    },
+    {
+      "use": "pincode"
+    },
+    {
+      "id": "kyc_document",
+      "type": "choice",
+      "label": {
+        "en": "Identity / address proof submitted"
+      },
+      "question": {
+        "en": "Which document are you giving as proof?"
+      },
+      "explain": "Banks accept 'Officially Valid Documents' (OVDs): passport, driving licence, voter ID, NREGA job card, Aadhaar (proof of possession), or a letter from the National Population Register.",
+      "options": [
+        "Aadhaar",
+        "Passport",
+        "Voter ID",
+        "Driving Licence",
+        "NREGA Job Card"
+      ]
+    },
+    {
+      "id": "kyc_document_number",
+      "type": "text",
+      "label": {
+        "en": "Document number"
+      },
+      "question": {
+        "en": "What is the number printed on that document?"
+      },
+      "explain": "The ID number on the document you selected. For Aadhaar, banks usually only need the last 4 digits written - the rest can be masked.",
+      "latin_only": true
+    },
+    {
+      "use": "pan",
+      "required": false
+    },
+    {
+      "use": "occupation"
+    },
+    {
+      "use": "place"
+    }
+  ],
+  "documents": [
+    "Self-attested copy of the ID/address proof you selected (carry the original)",
+    "PAN card copy, or Form 60 if you don't have a PAN",
+    "One recent passport-size photo",
+    "Your passbook"
+  ]
+}

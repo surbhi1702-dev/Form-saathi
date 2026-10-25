@@ -1,0 +1,291 @@
+{
+  "id": "registration_deed",
+  "category": "property",
+  "output": "deed",
+  "title": {
+    "en": "Property registration deed",
+    "ta": "சொத்துப் பதிவு ஆவணம்",
+    "hi": "संपत्ति रजिस्ट्री दस्तावेज़",
+    "or": "ସମ୍ପତ୍ତି ପଞ୍ଜୀକରଣ ଦଲିଲ"
+  },
+  "description": {
+    "en": "Prepare the details for a sale, gift or settlement deed and estimate stamp duty.",
+    "ta": "விற்பனை, தானம் அல்லது செட்டில்மென்ட் பத்திரத்திற்கான விவரங்களைத் தயாரித்து முத்திரைக் கட்டணத்தை மதிப்பிட.",
+    "hi": "बिक्री, दान या सेटलमेंट डीड का विवरण तैयार करें और स्टांप शुल्क का अनुमान लगाएं।",
+    "or": "ବିକ୍ରୟ, ଦାନ ବା ସେଟଲମେଣ୍ଟ ଦଲିଲର ବିବରଣୀ ପ୍ରସ୍ତୁତ କରନ୍ତୁ ଓ ଷ୍ଟାମ୍ପ ଶୁଳ୍କ ଆକଳନ କରନ୍ତୁ।"
+  },
+  "department": "Sub-Registrar Office (Registration Department, e.g. TNREGINET)",
+  "keywords": [
+    "registration",
+    "deed",
+    "sale deed",
+    "gift deed",
+    "settlement deed",
+    "registry",
+    "stamp duty",
+    "பத்திரம்",
+    "பதிவு",
+    "रजिस्ट्री",
+    "डीड",
+    "ଦଲିଲ"
+  ],
+  "knowledge_tags": [
+    "registration"
+  ],
+  "submit_note": "Get the final deed drafted or checked by a document writer or lawyer, pay stamp duty and fees online, book a slot at the Sub-Registrar office, and attend with both parties and two witnesses.",
+  "fields": [
+    {
+      "id": "deed_type",
+      "type": "choice",
+      "label": {
+        "en": "Type of deed"
+      },
+      "question": {
+        "en": "What kind of deed is it?"
+      },
+      "explain": "Sale deed: property is sold for money. Gift deed: given free, usually to someone outside close family. Settlement deed: given to a family member, often at a lower stamp duty.",
+      "options": [
+        "Sale deed",
+        "Gift deed",
+        "Settlement deed"
+      ]
+    },
+    {
+      "id": "executant_name",
+      "type": "name",
+      "label": {
+        "en": "Executant (seller / donor) name"
+      },
+      "question": {
+        "en": "Who is giving the property (seller or donor)? Full name please."
+      },
+      "explain": "The 'executant' is the person transferring the property - the seller in a sale, the donor in a gift."
+    },
+    {
+      "id": "executant_father",
+      "type": "name",
+      "label": {
+        "en": "Executant's father / spouse name"
+      },
+      "question": {
+        "en": "What is the seller/donor's father's or spouse's name?"
+      },
+      "explain": "Written as S/o, D/o or W/o in the deed."
+    },
+    {
+      "id": "executant_address",
+      "type": "address",
+      "label": {
+        "en": "Executant's address"
+      },
+      "question": {
+        "en": "What is the seller/donor's address?"
+      },
+      "explain": "Current address of the person transferring the property.",
+      "min_length": 10
+    },
+    {
+      "id": "claimant_name",
+      "type": "name",
+      "label": {
+        "en": "Claimant (buyer / receiver) name"
+      },
+      "question": {
+        "en": "Who is receiving the property (buyer or receiver)? Full name please."
+      },
+      "explain": "The 'claimant' is the person receiving the property."
+    },
+    {
+      "id": "claimant_father",
+      "type": "name",
+      "label": {
+        "en": "Claimant's father / spouse name"
+      },
+      "question": {
+        "en": "What is the buyer/receiver's father's or spouse's name?"
+      },
+      "explain": "Written as S/o, D/o or W/o in the deed."
+    },
+    {
+      "id": "claimant_address",
+      "type": "address",
+      "label": {
+        "en": "Claimant's address"
+      },
+      "question": {
+        "en": "What is the buyer/receiver's address?"
+      },
+      "explain": "Current address of the person receiving the property.",
+      "min_length": 10
+    },
+    {
+      "id": "relationship",
+      "type": "text",
+      "label": {
+        "en": "Relationship between the parties"
+      },
+      "question": {
+        "en": "How are the two parties related? (for example father and son)"
+      },
+      "explain": "For settlement deeds within the family, the relationship decides whether a concessional stamp duty applies.",
+      "latin_only": true,
+      "show_if": {
+        "field": "deed_type",
+        "in": [
+          "Gift deed",
+          "Settlement deed"
+        ]
+      }
+    },
+    {
+      "id": "property_type",
+      "type": "choice",
+      "label": {
+        "en": "Property type"
+      },
+      "question": {
+        "en": "What kind of property is it?"
+      },
+      "explain": "Land only, a house with land, or a flat (undivided share of land plus the flat).",
+      "options": [
+        "Vacant land",
+        "House with land",
+        "Flat / apartment"
+      ]
+    },
+    {
+      "id": "property_address",
+      "type": "address",
+      "label": {
+        "en": "Property address / village"
+      },
+      "question": {
+        "en": "Where is the property? (village or area, taluk, district)"
+      },
+      "explain": "Location as written in the revenue records.",
+      "min_length": 10
+    },
+    {
+      "id": "survey_number",
+      "type": "text",
+      "label": {
+        "en": "Survey number"
+      },
+      "question": {
+        "en": "What is the survey number (and sub-division) of the land?"
+      },
+      "explain": "The government land record number, like 'S.No. 123/4B'. It is on the patta and previous deeds.",
+      "latin_only": true
+    },
+    {
+      "id": "extent",
+      "type": "text",
+      "label": {
+        "en": "Extent (area)"
+      },
+      "question": {
+        "en": "What is the extent (area) of the property? (for example 1200 sq.ft or 5 cents)"
+      },
+      "explain": "The land area being transferred, exactly as in the parent document.",
+      "latin_only": true
+    },
+    {
+      "id": "sro_office",
+      "type": "text",
+      "label": {
+        "en": "Sub-Registrar office"
+      },
+      "question": {
+        "en": "Which Sub-Registrar office covers this property?"
+      },
+      "explain": "Each area has a jurisdictional Sub-Registrar office (SRO). You can find it on the registration department's website using the village name.",
+      "latin_only": true
+    },
+    {
+      "id": "consideration_amount",
+      "type": "amount",
+      "label": {
+        "en": "Sale consideration"
+      },
+      "question": {
+        "en": "What is the agreed sale price?"
+      },
+      "explain": "The price the buyer pays. Stamp duty is charged on this or the government guideline value, whichever is higher.",
+      "min": 1,
+      "show_if": {
+        "field": "deed_type",
+        "equals": "Sale deed"
+      }
+    },
+    {
+      "id": "guideline_value",
+      "type": "amount",
+      "label": {
+        "en": "Guideline (market) value"
+      },
+      "question": {
+        "en": "What is the government guideline value of the property? (from the registration department website)"
+      },
+      "explain": "The minimum value fixed by the government for that area. You can look it up on the state registration department's website using the survey number."
+    },
+    {
+      "id": "witness1_name",
+      "type": "name",
+      "label": {
+        "en": "Witness 1 name"
+      },
+      "question": {
+        "en": "Name of the first witness?"
+      },
+      "explain": "Two adult witnesses must sign the deed and come to the registration office with ID proof."
+    },
+    {
+      "id": "witness2_name",
+      "type": "name",
+      "label": {
+        "en": "Witness 2 name"
+      },
+      "question": {
+        "en": "Name of the second witness?"
+      },
+      "explain": "The second witness."
+    }
+  ],
+  "computed": [
+    {
+      "id": "stamp_duty_estimate",
+      "label": {
+        "en": "Stamp duty (estimate)"
+      },
+      "fn": "stamp_duty",
+      "args": [
+        "deed_type",
+        "consideration_amount",
+        "guideline_value"
+      ]
+    },
+    {
+      "id": "registration_fee_estimate",
+      "label": {
+        "en": "Registration fee (estimate)"
+      },
+      "fn": "registration_fee",
+      "args": [
+        "deed_type",
+        "consideration_amount",
+        "guideline_value"
+      ]
+    }
+  ],
+  "checks": [
+    "deed_value_below_guideline"
+  ],
+  "documents": [
+    "Parent document (previous deed) and encumbrance certificate",
+    "Patta / chitta",
+    "ID and address proof of both parties and both witnesses",
+    "PAN of both parties (needed for high-value property)",
+    "Passport-size photos of both parties",
+    "Proof of stamp duty and fee payment"
+  ]
+}

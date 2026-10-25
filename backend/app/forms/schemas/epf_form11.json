@@ -1,0 +1,185 @@
+{
+  "id": "epf_form11",
+  "category": "employment",
+  "output": "form",
+  "title": {
+    "en": "EPF declaration (Form 11)",
+    "ta": "EPF அறிவிப்பு (படிவம் 11)",
+    "hi": "EPF घोषणा (फॉर्म 11)",
+    "or": "EPF ଘୋଷଣା (ଫର୍ମ 11)"
+  },
+  "description": {
+    "en": "Declaration a new employee gives when joining, for PF and pension.",
+    "ta": "புதிய பணியாளர் வேலையில் சேரும்போது PF மற்றும் ஓய்வூதியத்திற்காகக் கொடுக்கும் அறிவிப்பு.",
+    "hi": "नई नौकरी में शामिल होते समय PF और पेंशन के लिए दी जाने वाली घोषणा।",
+    "or": "ନୂଆ ଚାକିରିରେ ଯୋଗଦେବା ସମୟରେ PF ଓ ପେନସନ ପାଇଁ ଦିଆଯାଉଥିବା ଘୋଷଣା।"
+  },
+  "department": "Employer / EPFO",
+  "keywords": [
+    "pf",
+    "epf",
+    "provident fund",
+    "form 11",
+    "uan",
+    "பிஎஃப்",
+    "पीएफ"
+  ],
+  "knowledge_tags": [
+    "epf"
+  ],
+  "submit_note": "Give the signed form to your employer's HR. If you had a UAN at a previous job, keep using the same UAN - don't create a new one.",
+  "fields": [
+    {
+      "use": "full_name"
+    },
+    {
+      "use": "father_or_spouse_name"
+    },
+    {
+      "use": "date_of_birth",
+      "rule": "adult"
+    },
+    {
+      "use": "gender"
+    },
+    {
+      "use": "marital_status"
+    },
+    {
+      "use": "mobile"
+    },
+    {
+      "use": "email"
+    },
+    {
+      "id": "earlier_epf_member",
+      "type": "yesno",
+      "label": {
+        "en": "Earlier member of EPF"
+      },
+      "question": {
+        "en": "Were you in PF (Provident Fund) at any earlier job?"
+      },
+      "explain": "Answer yes if PF was deducted from your salary at any previous employer.",
+      "options": [
+        "Yes",
+        "No"
+      ]
+    },
+    {
+      "id": "earlier_eps_member",
+      "type": "yesno",
+      "label": {
+        "en": "Earlier member of EPS (pension)"
+      },
+      "question": {
+        "en": "Were you in the pension scheme (EPS) at an earlier job?"
+      },
+      "explain": "EPS is the Employees' Pension Scheme. If you had PF earlier, you were almost always in EPS too.",
+      "options": [
+        "Yes",
+        "No"
+      ],
+      "show_if": {
+        "field": "earlier_epf_member",
+        "equals": "Yes"
+      }
+    },
+    {
+      "id": "uan",
+      "type": "uan",
+      "label": {
+        "en": "UAN"
+      },
+      "question": {
+        "en": "What is your UAN (Universal Account Number) from the earlier job?"
+      },
+      "explain": "The 12-digit UAN stays the same for your whole career. It is on your old salary slip or the EPFO member portal.",
+      "show_if": {
+        "field": "earlier_epf_member",
+        "equals": "Yes"
+      }
+    },
+    {
+      "id": "previous_exit_date",
+      "type": "date",
+      "label": {
+        "en": "Date of exit from previous job"
+      },
+      "question": {
+        "en": "When did you leave the previous job?"
+      },
+      "explain": "Your last working day at the earlier employer.",
+      "rule": "past",
+      "show_if": {
+        "field": "earlier_epf_member",
+        "equals": "Yes"
+      }
+    },
+    {
+      "id": "international_worker",
+      "type": "yesno",
+      "label": {
+        "en": "International worker"
+      },
+      "question": {
+        "en": "Are you an international worker (foreign citizen, or Indian who worked abroad under an SSA country)?"
+      },
+      "explain": "Most people answer No. This is for foreign nationals, or Indians who worked in a country that has a social security agreement with India.",
+      "options": [
+        "Yes",
+        "No"
+      ]
+    },
+    {
+      "id": "country_of_origin",
+      "type": "text",
+      "label": {
+        "en": "Country of origin"
+      },
+      "question": {
+        "en": "Which country are you from?"
+      },
+      "explain": "Your country of citizenship.",
+      "latin_only": true,
+      "show_if": {
+        "field": "international_worker",
+        "equals": "Yes"
+      }
+    },
+    {
+      "id": "education",
+      "type": "text",
+      "label": {
+        "en": "Educational qualification"
+      },
+      "question": {
+        "en": "What is your highest education? (for example 12th, B.Com, B.Tech)"
+      },
+      "explain": "Your highest completed qualification.",
+      "latin_only": true
+    },
+    {
+      "use": "aadhaar"
+    },
+    {
+      "use": "pan",
+      "required": false
+    },
+    {
+      "use": "account_number"
+    },
+    {
+      "use": "ifsc"
+    },
+    {
+      "use": "place"
+    }
+  ],
+  "documents": [
+    "Aadhaar card",
+    "PAN card",
+    "Bank passbook or cancelled cheque",
+    "Old salary slip showing UAN (if you had PF earlier)"
+  ]
+}

@@ -1,0 +1,224 @@
+{
+  "id": "lpg_connection",
+  "category": "utilities",
+  "output": "form",
+  "title": {
+    "en": "LPG cylinder - new connection",
+    "ta": "LPG சிலிண்டர் - புதிய இணைப்பு",
+    "hi": "LPG सिलेंडर - नया कनेक्शन",
+    "or": "LPG ସିଲିଣ୍ଡର - ନୂଆ ସଂଯୋଗ"
+  },
+  "description": {
+    "en": "Apply for a new domestic or commercial gas cylinder connection.",
+    "ta": "புதிய வீட்டு அல்லது வணிக எரிவாயு சிலிண்டர் இணைப்புக்கு விண்ணப்பிக்க.",
+    "hi": "नए घरेलू या व्यावसायिक गैस सिलेंडर कनेक्शन का आवेदन।",
+    "or": "ନୂଆ ଘରୋଇ ବା ବ୍ୟବସାୟିକ ଗ୍ୟାସ ସିଲିଣ୍ଡର ସଂଯୋଗ ଆବେଦନ।"
+  },
+  "department": "LPG distributor (Indane / Bharat Gas / HP Gas)",
+  "keywords": [
+    "lpg",
+    "gas",
+    "cylinder",
+    "gas connection",
+    "indane",
+    "bharat gas",
+    "hp gas",
+    "சிலிண்டர்",
+    "கேஸ்",
+    "सिलेंडर",
+    "गैस",
+    "ସିଲିଣ୍ଡର"
+  ],
+  "knowledge_tags": [
+    "lpg"
+  ],
+  "submit_note": "Submit at your nearest distributor of the oil company you choose, or apply online on that company's website. You'll pay a refundable security deposit for the cylinder and regulator.",
+  "fields": [
+    {
+      "id": "connection_type",
+      "type": "choice",
+      "label": {
+        "en": "Type of connection"
+      },
+      "question": {
+        "en": "Which kind of connection do you need?"
+      },
+      "explain": "Domestic cylinders are for home cooking. Commercial 19 kg cylinders are for hotels, shops and businesses and are not subsidised.",
+      "options": [
+        "Domestic 14.2 kg",
+        "Domestic 5 kg",
+        "Commercial 19 kg"
+      ]
+    },
+    {
+      "use": "full_name"
+    },
+    {
+      "use": "father_or_spouse_name"
+    },
+    {
+      "use": "date_of_birth",
+      "rule": "adult"
+    },
+    {
+      "use": "gender"
+    },
+    {
+      "use": "mobile"
+    },
+    {
+      "use": "email"
+    },
+    {
+      "use": "aadhaar"
+    },
+    {
+      "use": "address"
+    },
+    {
+      "use": "pincode"
+    },
+    {
+      "id": "business_name",
+      "type": "text",
+      "label": {
+        "en": "Business name"
+      },
+      "question": {
+        "en": "What is the name of your business?"
+      },
+      "explain": "The business that will use the commercial cylinder.",
+      "latin_only": true,
+      "show_if": {
+        "field": "connection_type",
+        "equals": "Commercial 19 kg"
+      }
+    },
+    {
+      "id": "gstin",
+      "type": "gstin",
+      "label": {
+        "en": "GSTIN"
+      },
+      "question": {
+        "en": "What is the business's GSTIN?"
+      },
+      "explain": "Only if registered under GST.",
+      "required": false,
+      "show_if": {
+        "field": "connection_type",
+        "equals": "Commercial 19 kg"
+      }
+    },
+    {
+      "id": "distributor_name",
+      "type": "text",
+      "label": {
+        "en": "Distributor"
+      },
+      "question": {
+        "en": "Which gas distributor (agency) is nearest to you?"
+      },
+      "explain": "The local agency of Indane, Bharat Gas or HP Gas that will deliver your cylinders.",
+      "latin_only": true
+    },
+    {
+      "id": "double_cylinder",
+      "type": "yesno",
+      "label": {
+        "en": "Double cylinder (DBC)"
+      },
+      "question": {
+        "en": "Do you want two cylinders (double bottle connection)?"
+      },
+      "explain": "With two cylinders you always have a spare while waiting for a refill. It needs a second security deposit.",
+      "options": [
+        "Yes",
+        "No"
+      ],
+      "show_if": {
+        "field": "connection_type",
+        "in": [
+          "Domestic 14.2 kg",
+          "Domestic 5 kg"
+        ]
+      }
+    },
+    {
+      "id": "ujjwala",
+      "type": "yesno",
+      "label": {
+        "en": "Under PM Ujjwala Yojana"
+      },
+      "question": {
+        "en": "Are you applying under PM Ujjwala Yojana (free connection for eligible poor households)?"
+      },
+      "explain": "Ujjwala gives a free connection to eligible women from poor households. The distributor checks eligibility.",
+      "options": [
+        "Yes",
+        "No"
+      ],
+      "show_if": {
+        "field": "connection_type",
+        "in": [
+          "Domestic 14.2 kg",
+          "Domestic 5 kg"
+        ]
+      }
+    },
+    {
+      "id": "existing_lpg_in_household",
+      "type": "yesno",
+      "label": {
+        "en": "Existing LPG connection in household"
+      },
+      "question": {
+        "en": "Does anyone in your household already have an LPG connection?"
+      },
+      "explain": "Domestic LPG is normally one connection per household. If someone already has one, the application may be rejected.",
+      "options": [
+        "Yes",
+        "No"
+      ]
+    },
+    {
+      "use": "account_number",
+      "label": {
+        "en": "Bank account for subsidy",
+        "ta": "மானியத்திற்கான வங்கிக் கணக்கு",
+        "hi": "सब्सिडी के लिए बैंक खाता",
+        "or": "ସବସିଡି ପାଇଁ ବ୍ୟାଙ୍କ ଖାତା"
+      },
+      "show_if": {
+        "field": "connection_type",
+        "in": [
+          "Domestic 14.2 kg",
+          "Domestic 5 kg"
+        ]
+      }
+    },
+    {
+      "use": "ifsc",
+      "show_if": {
+        "field": "connection_type",
+        "in": [
+          "Domestic 14.2 kg",
+          "Domestic 5 kg"
+        ]
+      }
+    },
+    {
+      "use": "place"
+    }
+  ],
+  "checks": [
+    "lpg_household"
+  ],
+  "documents": [
+    "Aadhaar card",
+    "Address proof (Aadhaar, ration card, rent agreement or utility bill)",
+    "Passport-size photo",
+    "Bank passbook (for subsidy, domestic only)",
+    "For commercial: business registration / trade licence"
+  ]
+}

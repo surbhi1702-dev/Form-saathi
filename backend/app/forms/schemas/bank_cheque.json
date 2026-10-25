@@ -1,0 +1,103 @@
+{
+  "id": "bank_cheque",
+  "category": "bank",
+  "output": "cheque",
+  "title": {
+    "en": "Cheque writing helper",
+    "ta": "காசோலை எழுதும் உதவி",
+    "hi": "चेक भरने में मदद",
+    "or": "ଚେକ୍ ଲେଖିବା ସହାୟକ"
+  },
+  "description": {
+    "en": "Fill a cheque correctly - amount in words, date and crossing.",
+    "ta": "காசோலையைச் சரியாக நிரப்ப - தொகை எழுத்தில், தேதி, கிராசிங்.",
+    "hi": "चेक सही भरें - राशि शब्दों में, तारीख और क्रॉसिंग।",
+    "or": "ଚେକ୍ ଠିକ୍ ଭାବେ ଭରନ୍ତୁ - ଶବ୍ଦରେ ରାଶି, ତାରିଖ ଓ କ୍ରସିଂ।"
+  },
+  "department": "Your bank",
+  "keywords": [
+    "cheque",
+    "check fill",
+    "write cheque",
+    "காசோலை",
+    "செக்",
+    "चेक",
+    "ଚେକ୍"
+  ],
+  "knowledge_tags": [
+    "bank_cheque"
+  ],
+  "submit_note": "Write with one pen, don't overwrite, draw a line after the name and after the amount in words, and sign exactly as in the bank's records.",
+  "fields": [
+    {
+      "id": "payee_name",
+      "type": "text",
+      "label": {
+        "en": "Pay (payee name)"
+      },
+      "question": {
+        "en": "Who are you paying? Give the name exactly as on their bank account."
+      },
+      "explain": "The person or company receiving the money. For a company, use its exact registered name, or the bank will return the cheque.",
+      "latin_only": true
+    },
+    {
+      "id": "amount",
+      "type": "amount",
+      "label": {
+        "en": "Amount (Rs.)"
+      },
+      "question": {
+        "en": "How much is the cheque for?"
+      },
+      "explain": "The amount in figures. We'll write the words for you.",
+      "min": 1
+    },
+    {
+      "id": "cheque_date",
+      "type": "date",
+      "label": {
+        "en": "Cheque date"
+      },
+      "question": {
+        "en": "What date should be on the cheque? (say 'today' for today)"
+      },
+      "explain": "A cheque can be deposited for 3 months from this date. After that it becomes 'stale' and the bank won't pay it.",
+      "rule": "within_months:3"
+    },
+    {
+      "id": "account_payee",
+      "type": "yesno",
+      "label": {
+        "en": "Account payee crossing"
+      },
+      "question": {
+        "en": "Should it go only into the payee's bank account? (recommended - say yes)"
+      },
+      "explain": "'A/c Payee' crossing means two parallel lines at the top-left corner with 'A/c Payee' written between them. The money can then only go into the payee's account, so a lost cheque can't be cashed by someone else.",
+      "options": [
+        "Yes",
+        "No"
+      ]
+    }
+  ],
+  "computed": [
+    {
+      "id": "amount_in_words",
+      "label": {
+        "en": "Rupees (in words)"
+      },
+      "fn": "amount_in_words",
+      "args": [
+        "amount"
+      ]
+    }
+  ],
+  "checks": [
+    "cheque_validity"
+  ],
+  "documents": [
+    "Your cheque book",
+    "A pen (use the same pen for the whole cheque)"
+  ]
+}

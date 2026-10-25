@@ -1,0 +1,92 @@
+{"form_id": "bank_savings_account", "field_id": "mobile", "lang": "en", "text": "98400 12345", "expected": "answer", "note": ""}
+{"form_id": "bank_savings_account", "field_id": "mobile", "lang": "en", "text": "my number is 9840012345", "expected": "answer", "note": ""}
+{"form_id": "bank_savings_account", "field_id": "mobile", "lang": "ta", "text": "என் நம்பர் 9840012345", "expected": "answer", "note": ""}
+{"form_id": "bank_savings_account", "field_id": "mobile", "lang": "hi", "text": "मेरा नंबर 9840012345 है", "expected": "answer", "note": ""}
+{"form_id": "bank_savings_account", "field_id": "mobile", "lang": "or", "text": "ମୋ ନମ୍ବର 9840012345", "expected": "answer", "note": ""}
+{"form_id": "bank_savings_account", "field_id": "full_name", "lang": "en", "text": "Ravi Kumar", "expected": "answer", "note": ""}
+{"form_id": "bank_savings_account", "field_id": "full_name", "lang": "en", "text": "my name is Lakshmi Narayanan", "expected": "answer", "note": ""}
+{"form_id": "bank_savings_account", "field_id": "full_name", "lang": "ta", "text": "ரவி குமார்", "expected": "answer", "note": ""}
+{"form_id": "bank_savings_account", "field_id": "full_name", "lang": "hi", "text": "सुनीता देवी", "expected": "answer", "note": ""}
+{"form_id": "bank_savings_account", "field_id": "full_name", "lang": "or", "text": "ସୁନୀତା ମହାନ୍ତି", "expected": "answer", "note": ""}
+{"form_id": "bank_savings_account", "field_id": "gender", "lang": "en", "text": "female", "expected": "answer", "note": ""}
+{"form_id": "bank_savings_account", "field_id": "gender", "lang": "ta", "text": "பெண்", "expected": "answer", "note": ""}
+{"form_id": "bank_savings_account", "field_id": "gender", "lang": "hi", "text": "पुरुष", "expected": "answer", "note": ""}
+{"form_id": "bank_savings_account", "field_id": "gender", "lang": "en", "text": "2", "expected": "answer", "note": ""}
+{"form_id": "bank_savings_account", "field_id": "nominee_wanted", "lang": "en", "text": "yes please", "expected": "answer", "note": ""}
+{"form_id": "bank_savings_account", "field_id": "nominee_wanted", "lang": "ta", "text": "ஆமாம்", "expected": "answer", "note": ""}
+{"form_id": "bank_savings_account", "field_id": "nominee_wanted", "lang": "hi", "text": "हाँ", "expected": "answer", "note": ""}
+{"form_id": "bank_savings_account", "field_id": "nominee_wanted", "lang": "or", "text": "ନା", "expected": "answer", "note": ""}
+{"form_id": "bank_savings_account", "field_id": "occupation", "lang": "en", "text": "farmer", "expected": "answer", "note": ""}
+{"form_id": "bank_savings_account", "field_id": "occupation", "lang": "hi", "text": "मैं किसान हूँ", "expected": "answer", "note": ""}
+{"form_id": "bank_savings_account", "field_id": "address", "lang": "en", "text": "12 Gandhi Street, Anna Nagar, Chennai", "expected": "answer", "note": ""}
+{"form_id": "bank_savings_account", "field_id": "address", "lang": "en", "text": "Door 5, Update Colony, Salem", "expected": "answer", "note": "contains the word 'update'"}
+{"form_id": "bank_savings_account", "field_id": "address", "lang": "ta", "text": "12, காந்தி தெரு, அண்ணா நகர், சென்னை", "expected": "answer", "note": ""}
+{"form_id": "bank_savings_account", "field_id": "aadhaar", "lang": "en", "text": "2345 6789 0124", "expected": "answer", "note": ""}
+{"form_id": "bank_savings_account", "field_id": "email", "lang": "en", "text": "ravi@gmail.com", "expected": "answer", "note": ""}
+{"form_id": "eb_domestic", "field_id": "connected_load_kw", "lang": "en", "text": "4 fans, 1 fridge and 2 lights", "expected": "answer", "note": ""}
+{"form_id": "eb_domestic", "field_id": "connected_load_kw", "lang": "ta", "text": "4 ஃபேன், 1 ஃப்ரிட்ஜ், 1 டிவி", "expected": "answer", "note": ""}
+{"form_id": "eb_domestic", "field_id": "connected_load_kw", "lang": "en", "text": "around 3 kw", "expected": "answer", "note": ""}
+{"form_id": "bank_cheque", "field_id": "amount", "lang": "en", "text": "25,000", "expected": "answer", "note": ""}
+{"form_id": "bank_cheque", "field_id": "amount", "lang": "en", "text": "2.5 lakh rupees", "expected": "answer", "note": ""}
+{"form_id": "bank_cheque", "field_id": "amount", "lang": "hi", "text": "पच्चीस हज़ार रुपये", "expected": "answer", "note": ""}
+{"form_id": "bank_cheque", "field_id": "cheque_date", "lang": "en", "text": "today", "expected": "answer", "note": ""}
+{"form_id": "bank_cheque", "field_id": "cheque_date", "lang": "ta", "text": "இன்று", "expected": "answer", "note": ""}
+{"form_id": "bank_cheque", "field_id": "payee_name", "lang": "en", "text": "Lakshmi Traders", "expected": "answer", "note": ""}
+{"form_id": "bank_savings_account", "field_id": "aadhaar", "lang": "en", "text": "what does this mean?", "expected": "explain", "note": ""}
+{"form_id": "bank_savings_account", "field_id": "aadhaar", "lang": "en", "text": "where do I find my Aadhaar number?", "expected": "explain", "note": ""}
+{"form_id": "bank_savings_account", "field_id": "aadhaar", "lang": "en", "text": "why do you need my aadhaar", "expected": "explain", "note": ""}
+{"form_id": "bank_savings_account", "field_id": "nominee_wanted", "lang": "en", "text": "what is a nominee?", "expected": "explain", "note": ""}
+{"form_id": "bank_savings_account", "field_id": "nominee_wanted", "lang": "en", "text": "explain nominee", "expected": "explain", "note": ""}
+{"form_id": "bank_savings_account", "field_id": "nominee_wanted", "lang": "en", "text": "nominee means what", "expected": "explain", "note": "no question mark, no question word at start"}
+{"form_id": "bank_savings_account", "field_id": "nominee_wanted", "lang": "en", "text": "who should I put as nominee", "expected": "explain", "note": "no question mark"}
+{"form_id": "bank_savings_account", "field_id": "nominee_wanted", "lang": "ta", "text": "நாமினி என்றால் என்ன?", "expected": "explain", "note": ""}
+{"form_id": "bank_savings_account", "field_id": "nominee_wanted", "lang": "hi", "text": "नॉमिनी का मतलब क्या है?", "expected": "explain", "note": ""}
+{"form_id": "bank_savings_account", "field_id": "nominee_wanted", "lang": "or", "text": "ନମିନି କ'ଣ?", "expected": "explain", "note": ""}
+{"form_id": "bank_savings_account", "field_id": "occupation", "lang": "en", "text": "I don't know what to write here", "expected": "explain", "note": ""}
+{"form_id": "bank_savings_account", "field_id": "occupation", "lang": "ta", "text": "எனக்குத் தெரியாது", "expected": "explain", "note": ""}
+{"form_id": "bank_savings_account", "field_id": "occupation", "lang": "hi", "text": "मुझे नहीं पता", "expected": "explain", "note": ""}
+{"form_id": "bank_savings_account", "field_id": "occupation", "lang": "or", "text": "ମୁଁ ଜାଣିନି", "expected": "explain", "note": ""}
+{"form_id": "bank_savings_account", "field_id": "branch_name", "lang": "en", "text": "how do I know my branch", "expected": "explain", "note": ""}
+{"form_id": "bank_savings_account", "field_id": "branch_name", "lang": "en", "text": "not sure", "expected": "explain", "note": ""}
+{"form_id": "eb_domestic", "field_id": "connected_load_kw", "lang": "en", "text": "what is connected load?", "expected": "explain", "note": ""}
+{"form_id": "eb_domestic", "field_id": "connected_load_kw", "lang": "en", "text": "how do I calculate this", "expected": "explain", "note": ""}
+{"form_id": "eb_domestic", "field_id": "connected_load_kw", "lang": "hi", "text": "कनेक्टेड लोड क्या होता है?", "expected": "explain", "note": ""}
+{"form_id": "eb_domestic", "field_id": "connected_load_kw", "lang": "ta", "text": "இது என்ன?", "expected": "explain", "note": ""}
+{"form_id": "eb_domestic", "field_id": "phase", "lang": "en", "text": "which one should I choose?", "expected": "explain", "note": ""}
+{"form_id": "eb_domestic", "field_id": "phase", "lang": "en", "text": "difference between single and three phase", "expected": "explain", "note": "no question mark"}
+{"form_id": "bank_cheque", "field_id": "account_payee", "lang": "en", "text": "tell me about account payee", "expected": "explain", "note": ""}
+{"form_id": "bank_cheque", "field_id": "account_payee", "lang": "hi", "text": "अकाउंट पेयी क्यों ज़रूरी है?", "expected": "explain", "note": ""}
+{"form_id": "bank_cheque", "field_id": "cheque_date", "lang": "en", "text": "can I write a future date?", "expected": "explain", "note": ""}
+{"form_id": "bank_cheque", "field_id": "amount", "lang": "or", "text": "ଏହାର ଅର୍ଥ କ'ଣ?", "expected": "explain", "note": ""}
+{"form_id": "bank_savings_account", "field_id": "email", "lang": "en", "text": "skip", "expected": "skip", "note": ""}
+{"form_id": "bank_savings_account", "field_id": "email", "lang": "en", "text": "no email", "expected": "skip", "note": ""}
+{"form_id": "bank_savings_account", "field_id": "email", "lang": "en", "text": "I don't have an email", "expected": "skip", "note": ""}
+{"form_id": "bank_savings_account", "field_id": "email", "lang": "en", "text": "leave it blank", "expected": "skip", "note": ""}
+{"form_id": "bank_savings_account", "field_id": "email", "lang": "en", "text": "next", "expected": "skip", "note": ""}
+{"form_id": "bank_savings_account", "field_id": "email", "lang": "en", "text": "nil", "expected": "skip", "note": ""}
+{"form_id": "bank_savings_account", "field_id": "email", "lang": "ta", "text": "தவிர்", "expected": "skip", "note": ""}
+{"form_id": "bank_savings_account", "field_id": "email", "lang": "ta", "text": "எனக்கு ஈமெயில் இல்லை", "expected": "skip", "note": ""}
+{"form_id": "bank_savings_account", "field_id": "email", "lang": "hi", "text": "छोड़ो", "expected": "skip", "note": ""}
+{"form_id": "bank_savings_account", "field_id": "email", "lang": "hi", "text": "मेरे पास ईमेल नहीं है", "expected": "skip", "note": ""}
+{"form_id": "bank_savings_account", "field_id": "email", "lang": "or", "text": "ଛାଡନ୍ତୁ", "expected": "skip", "note": ""}
+{"form_id": "bank_savings_account", "field_id": "pan", "lang": "en", "text": "I don't have PAN", "expected": "skip", "note": ""}
+{"form_id": "bank_savings_account", "field_id": "pan", "lang": "en", "text": "not applicable", "expected": "skip", "note": ""}
+{"form_id": "bank_savings_account", "field_id": "pan", "lang": "hi", "text": "पैन कार्ड नहीं है", "expected": "skip", "note": ""}
+{"form_id": "bank_savings_account", "field_id": "pan", "lang": "en", "text": "pass", "expected": "skip", "note": ""}
+{"form_id": "bank_savings_account", "field_id": "pan", "lang": "en", "text": "skip this one", "expected": "skip", "note": ""}
+{"form_id": "bank_savings_account", "field_id": "address", "lang": "en", "text": "change my mobile number", "expected": "correct", "note": ""}
+{"form_id": "bank_savings_account", "field_id": "address", "lang": "en", "text": "please update my name", "expected": "correct", "note": "free-text field, 'update' not at start"}
+{"form_id": "bank_savings_account", "field_id": "address", "lang": "en", "text": "wait, my date of birth was wrong", "expected": "correct", "note": ""}
+{"form_id": "bank_savings_account", "field_id": "email", "lang": "en", "text": "go back, I gave the wrong name", "expected": "correct", "note": ""}
+{"form_id": "bank_savings_account", "field_id": "email", "lang": "en", "text": "I made a mistake in the mobile number", "expected": "correct", "note": ""}
+{"form_id": "bank_savings_account", "field_id": "email", "lang": "en", "text": "oops, the previous answer is wrong", "expected": "correct", "note": ""}
+{"form_id": "bank_savings_account", "field_id": "email", "lang": "en", "text": "can I edit the PIN code?", "expected": "correct", "note": ""}
+{"form_id": "bank_savings_account", "field_id": "email", "lang": "en", "text": "edit gender", "expected": "correct", "note": ""}
+{"form_id": "bank_savings_account", "field_id": "aadhaar", "lang": "ta", "text": "மொபைல் எண்ணை மாற்று", "expected": "correct", "note": ""}
+{"form_id": "bank_savings_account", "field_id": "aadhaar", "lang": "ta", "text": "பெயர் தவறு", "expected": "correct", "note": ""}
+{"form_id": "bank_savings_account", "field_id": "aadhaar", "lang": "hi", "text": "नाम बदलो", "expected": "correct", "note": ""}
+{"form_id": "bank_savings_account", "field_id": "aadhaar", "lang": "hi", "text": "मोबाइल नंबर गलत है", "expected": "correct", "note": ""}
+{"form_id": "bank_savings_account", "field_id": "aadhaar", "lang": "or", "text": "ମୋବାଇଲ ନମ୍ବର ବଦଳାଅ", "expected": "correct", "note": ""}
+{"form_id": "bank_savings_account", "field_id": "aadhaar", "lang": "or", "text": "ନାମ ଭୁଲ ଅଛି", "expected": "correct", "note": ""}
+{"form_id": "bank_cheque", "field_id": "cheque_date", "lang": "en", "text": "the amount I gave is wrong", "expected": "correct", "note": ""}
+{"form_id": "bank_cheque", "field_id": "account_payee", "lang": "en", "text": "modify the payee name", "expected": "correct", "note": ""}

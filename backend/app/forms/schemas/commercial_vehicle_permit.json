@@ -1,0 +1,168 @@
+{
+  "id": "commercial_vehicle_permit",
+  "category": "transport",
+  "output": "form",
+  "title": {
+    "en": "Commercial vehicle permit",
+    "ta": "வணிக வாகன அனுமதி (பர்மிட்)",
+    "hi": "व्यावसायिक वाहन परमिट",
+    "or": "ବ୍ୟବସାୟିକ ଯାନ ପରମିଟ"
+  },
+  "description": {
+    "en": "Apply for a goods or taxi permit for a commercial vehicle.",
+    "ta": "வணிக வாகனத்திற்கு சரக்கு அல்லது டாக்சி அனுமதிக்கு விண்ணப்பிக்க.",
+    "hi": "व्यावसायिक वाहन के लिए माल या टैक्सी परमिट का आवेदन।",
+    "or": "ବ୍ୟବସାୟିକ ଯାନ ପାଇଁ ମାଲ ବା ଟାକ୍ସି ପରମିଟ ଆବେଦନ।"
+  },
+  "department": "Regional Transport Office (RTO) / Parivahan portal",
+  "keywords": [
+    "permit",
+    "vehicle permit",
+    "commercial vehicle",
+    "goods vehicle",
+    "taxi permit",
+    "national permit",
+    "rto",
+    "பர்மிட்",
+    "வாகனம்",
+    "परमिट",
+    "गाड़ी",
+    "ପରମିଟ"
+  ],
+  "knowledge_tags": [
+    "vehicle_permit"
+  ],
+  "submit_note": "Apply through the Parivahan (Vahan) permit service or at your RTO. All vehicle documents must be valid on the day you apply.",
+  "fields": [
+    {
+      "use": "full_name",
+      "label": {
+        "en": "Owner name (as in RC)",
+        "ta": "உரிமையாளர் பெயர் (RC-யில் உள்ளபடி)",
+        "hi": "मालिक का नाम (RC के अनुसार)",
+        "or": "ମାଲିକଙ୍କ ନାମ (RC ଅନୁସାରେ)"
+      }
+    },
+    {
+      "use": "father_or_spouse_name"
+    },
+    {
+      "use": "address"
+    },
+    {
+      "use": "pincode"
+    },
+    {
+      "use": "mobile"
+    },
+    {
+      "use": "email"
+    },
+    {
+      "id": "vehicle_registration_no",
+      "type": "vehicle_no",
+      "label": {
+        "en": "Vehicle registration number"
+      },
+      "question": {
+        "en": "What is the vehicle's registration number? (like TN 01 AB 1234)"
+      },
+      "explain": "The number on the number plate and RC book."
+    },
+    {
+      "id": "vehicle_category",
+      "type": "choice",
+      "label": {
+        "en": "Vehicle category"
+      },
+      "question": {
+        "en": "What kind of vehicle is it?"
+      },
+      "explain": "Goods vehicles carry goods; contract carriages (taxi, maxi cab) carry passengers on hire.",
+      "options": [
+        "Goods carriage - light (LGV)",
+        "Goods carriage - medium (MGV)",
+        "Goods carriage - heavy (HGV)",
+        "Taxi (contract carriage)",
+        "Maxi cab (contract carriage)"
+      ]
+    },
+    {
+      "id": "permit_type",
+      "type": "choice",
+      "label": {
+        "en": "Permit type"
+      },
+      "question": {
+        "en": "Which permit do you need?"
+      },
+      "explain": "A state permit allows operation within the state. A national permit lets goods vehicles operate across states. A temporary permit is for a short trip or period.",
+      "options": [
+        "State permit",
+        "National permit (goods)",
+        "All India tourist permit",
+        "Temporary permit"
+      ]
+    },
+    {
+      "id": "region_or_route",
+      "type": "text",
+      "label": {
+        "en": "Region / route"
+      },
+      "question": {
+        "en": "Which area or route will the vehicle run in? (for example 'Tamil Nadu' or 'Chennai to Bengaluru')"
+      },
+      "explain": "The region or route for which you are asking permission.",
+      "latin_only": true
+    },
+    {
+      "id": "insurance_valid_till",
+      "type": "date",
+      "label": {
+        "en": "Insurance valid till"
+      },
+      "question": {
+        "en": "Till what date is the vehicle insurance valid?"
+      },
+      "explain": "From your insurance policy. It must be valid when you apply.",
+      "rule": "future"
+    },
+    {
+      "id": "fitness_valid_till",
+      "type": "date",
+      "label": {
+        "en": "Fitness certificate valid till"
+      },
+      "question": {
+        "en": "Till what date is the fitness certificate (FC) valid?"
+      },
+      "explain": "Commercial vehicles need a valid FC from the RTO.",
+      "rule": "future"
+    },
+    {
+      "id": "puc_valid_till",
+      "type": "date",
+      "label": {
+        "en": "PUC valid till"
+      },
+      "question": {
+        "en": "Till what date is the pollution (PUC) certificate valid?"
+      },
+      "explain": "Pollution Under Control certificate.",
+      "rule": "future"
+    },
+    {
+      "use": "place"
+    }
+  ],
+  "documents": [
+    "RC (registration certificate)",
+    "Valid insurance certificate",
+    "Fitness certificate",
+    "PUC certificate",
+    "Road tax paid receipt",
+    "Address proof",
+    "Passport-size photo"
+  ]
+}

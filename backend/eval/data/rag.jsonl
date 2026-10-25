@@ -1,0 +1,43 @@
+{"question": "Which documents does the bank accept as ID proof?", "form_id": "bank_kyc_update", "expected_tag": "bank_kyc", "expected_heading": "Officially Valid Documents (OVDs)"}
+{"question": "I don't have a PAN card, what should I do?", "form_id": "bank_kyc_update", "expected_tag": "bank_kyc", "expected_heading": "PAN or Form 60"}
+{"question": "Nothing changed in my details, do I need to give documents again?", "form_id": "bank_kyc_update", "expected_tag": "bank_kyc", "expected_heading": "Re-KYC without changes"}
+{"question": "What is KYC?", "form_id": "bank_kyc_update", "expected_tag": "bank_kyc", "expected_heading": "What KYC means"}
+{"question": "Can my son withdraw money from my account with a slip?", "form_id": "bank_cash_withdrawal", "expected_tag": "bank_withdrawal", "expected_heading": "Who can use a withdrawal slip"}
+{"question": "How should I write the amount in words?", "form_id": "bank_cash_withdrawal", "expected_tag": "bank_withdrawal", "expected_heading": "Amount in words"}
+{"question": "Why did the bank reject my slip because of the signature?", "form_id": "bank_cash_withdrawal", "expected_tag": "bank_withdrawal", "expected_heading": "Filling the slip"}
+{"question": "What is a nominee?", "form_id": "bank_savings_account", "expected_tag": "bank_savings", "expected_heading": "Nominee"}
+{"question": "Is there an account with no minimum balance?", "form_id": "bank_savings_account", "expected_tag": "bank_savings", "expected_heading": "BSBD accounts"}
+{"question": "Why is the bank asking for my income?", "form_id": "bank_savings_account", "expected_tag": "bank_savings", "expected_heading": "Annual income and occupation"}
+{"question": "How long is a cheque valid?", "form_id": "bank_cheque", "expected_tag": "bank_cheque", "expected_heading": "Validity"}
+{"question": "What does account payee mean?", "form_id": "bank_cheque", "expected_tag": "bank_cheque", "expected_heading": "Account payee crossing"}
+{"question": "Can I correct a mistake on the cheque?", "form_id": "bank_cheque", "expected_tag": "bank_cheque", "expected_heading": "Writing safely"}
+{"question": "Can I give a cheque with a future date?", "form_id": "bank_cheque", "expected_tag": "bank_cheque", "expected_heading": "Post-dated cheques"}
+{"question": "What is PMT-06?", "form_id": "gst_pmt06_challan", "expected_tag": "gst_challan", "expected_heading": "What PMT-06 is"}
+{"question": "What is the difference between IGST and CGST?", "form_id": "gst_pmt06_challan", "expected_tag": "gst_challan", "expected_heading": "Tax heads"}
+{"question": "How is the late fee split?", "form_id": "gst_pmt06_challan", "expected_tag": "gst_challan", "expected_heading": "Late fee"}
+{"question": "I am in the quarterly scheme, how do I pay every month?", "form_id": "gst_pmt06_challan", "expected_tag": "gst_challan", "expected_heading": "QRMP scheme"}
+{"question": "For how many days is the challan valid?", "form_id": "gst_pmt06_challan", "expected_tag": "gst_challan", "expected_heading": "Validity and payment modes"}
+{"question": "What is UAN?", "form_id": "epf_form11", "expected_tag": "epf", "expected_heading": "UAN"}
+{"question": "What is the pension scheme EPS?", "form_id": "epf_form11", "expected_tag": "epf", "expected_heading": "EPS"}
+{"question": "Am I an international worker?", "form_id": "epf_form11", "expected_tag": "epf", "expected_heading": "International worker"}
+{"question": "Can I use ITR-1 if I earn 60 lakh?", "form_id": "itr1_sahaj", "expected_tag": "itr1", "expected_heading": "Who can use ITR-1"}
+{"question": "Should I choose the old regime or the new regime?", "form_id": "itr1_sahaj", "expected_tag": "itr1", "expected_heading": "Old vs new regime"}
+{"question": "What is standard deduction?", "form_id": "itr1_sahaj", "expected_tag": "itr1", "expected_heading": "Standard deduction"}
+{"question": "Where can I see how much TDS was cut?", "form_id": "itr1_sahaj", "expected_tag": "itr1", "expected_heading": "Form 16, 26AS and AIS"}
+{"question": "Do I have to do anything after filing the return?", "form_id": "itr1_sahaj", "expected_tag": "itr1", "expected_heading": "Verification"}
+{"question": "How do I calculate connected load?", "form_id": "eb_domestic", "expected_tag": "electricity", "expected_heading": "Connected load"}
+{"question": "Do I need three phase supply?", "form_id": "eb_domestic", "expected_tag": "electricity", "expected_heading": "Single phase vs three phase"}
+{"question": "Can I use my home connection for my shop?", "form_id": "eb_commercial", "expected_tag": "electricity", "expected_heading": "Domestic vs commercial"}
+{"question": "I am a tenant, which documents do I need?", "form_id": "eb_domestic", "expected_tag": "electricity", "expected_heading": "Documents"}
+{"question": "Can I get a second gas connection in the same house?", "form_id": "lpg_connection", "expected_tag": "lpg", "expected_heading": "One connection per household"}
+{"question": "What is Ujjwala?", "form_id": "lpg_connection", "expected_tag": "lpg", "expected_heading": "Subsidy and Ujjwala"}
+{"question": "Do I have to pay a deposit for the cylinder?", "form_id": "lpg_connection", "expected_tag": "lpg", "expected_heading": "Security deposit"}
+{"question": "How are water connection charges decided?", "form_id": "metrowater_connection", "expected_tag": "metrowater", "expected_heading": "Charges"}
+{"question": "I bought a house, how do I change the name on the tax bill?", "form_id": "property_tax", "expected_tag": "property_tax", "expected_heading": "Name transfer"}
+{"question": "Who is the executant?", "form_id": "registration_deed", "expected_tag": "registration", "expected_heading": "Executant and claimant"}
+{"question": "How much stamp duty is charged on a sale deed?", "form_id": "registration_deed", "expected_tag": "registration", "expected_heading": "Stamp duty and registration fee"}
+{"question": "What is guideline value?", "form_id": "registration_deed", "expected_tag": "registration", "expected_heading": "Guideline value"}
+{"question": "What is an encumbrance certificate?", "form_id": "registration_deed", "expected_tag": "registration", "expected_heading": "Encumbrance certificate"}
+{"question": "Why are rent agreements made for 11 months?", "form_id": "rental_agreement", "expected_tag": "rental", "expected_heading": "11-month agreements"}
+{"question": "How much advance can the owner ask in Tamil Nadu?", "form_id": "rental_agreement", "expected_tag": "rental", "expected_heading": "Tamil Nadu tenancy law"}
+{"question": "What is a national permit?", "form_id": "commercial_vehicle_permit", "expected_tag": "vehicle_permit", "expected_heading": "Types"}
