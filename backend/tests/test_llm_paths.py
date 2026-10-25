@@ -89,9 +89,6 @@ class LLMPathTests(unittest.TestCase):
         self.assertIsNotNone(engine.get_form(form["id"]))
 
 
-if __name__ == "__main__":
-    unittest.main()
-
 
 class ModelPickingTests(unittest.TestCase):
     def test_falls_back_when_model_not_available(self):
@@ -107,3 +104,50 @@ class ModelPickingTests(unittest.TestCase):
         info = pick_models("llama-3.1-8b-instant", "v", ["llama-3.1-8b-instant"])
         self.assertEqual(info["chat"], "llama-3.1-8b-instant")
         self.assertEqual(info["warnings"][:0], [])
+
+
+class GroundingTests(unittest.TestCase):
+    """The LLM retry must not turn an invalid answer into a valid-looking one."""
+
+    def setUp(self):
+        self.fake = FakeLLM()
+        llm_module.set_llm(self.fake)
+        os.environ["FORMSAATHI_MOCK_LLM"] = "0"
+        os.environ["GROQ_API_KEY"] = "test-key"
+
+    def tearDown(self):
+        os.environ["FORMSAATHI_MOCK_LLM"] = "1"
+        os.environ.pop("GROQ_API_KEY", None)
+        llm_module.set_llm(None)
+
+    def extract(self, form_id, field_id, text, llm_value):
+        from app.agents import nodes
+        self.fake.chat = lambda system, user, temperature=0.2: json.dumps({"value": llm_value})
+        state = {"form_id": form_id, "current_field": field_id, "user_message": text, "lang": "en",
+                 "values": {}, "skipped": [], "tcache": {}, "notes": {}, "reply_parts": []}
+        self.assertFalse(llm_module.get_llm().is_mock)
+        return nodes.extract_validate(state)
+
+    def test_llm_cannot_invent_digits(self):
+        res = self.extract("bank_savings_account", "mobile", "98400 1234", "9840012345")
+        self.assertIsNotNone(res["error"])
+        res = self.extract("bank_savings_account", "aadhaar", "1234 5678 9012", "2345 6789 0124")
+        self.assertIsNotNone(res["error"])
+
+    def test_llm_cannot_strip_digits_from_name(self):
+        res = self.extract("bank_savings_account", "full_name", "Ravi 123", "Ravi")
+        self.assertIsNotNone(res["error"])
+
+    def test_llm_cannot_fix_ifsc(self):
+        res = self.extract("epf_form11", "ifsc", "SBIN1001234", "SBIN0001234")
+        self.assertIsNotNone(res["error"])
+
+    def test_grounded_retry_still_accepted(self):
+        from app.agents.nodes import grounded
+        self.assertTrue(grounded({"type": "mobile"}, "call me on 98400 12345 please", "9840012345"))
+        self.assertTrue(grounded({"type": "pan"}, "pan: abcde 1234 f", "ABCDE1234F"))
+        self.assertTrue(grounded({"type": "name"}, "naan Ravi Kumar", "Ravi Kumar"))
+
+
+if __name__ == "__main__":
+    unittest.main()

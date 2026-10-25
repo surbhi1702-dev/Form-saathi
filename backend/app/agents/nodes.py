@@ -199,6 +199,26 @@ def llm_extract(field: dict, text: str) -> str | None:
     return None
 
 
+_DIGIT_IDS = {"mobile", "pincode", "aadhaar", "account_number", "uan"}
+_ALNUM_IDS = {"pan", "ifsc", "gstin", "vehicle_no"}
+
+
+def grounded(field: dict, text: str, value: str) -> bool:
+    """Is an LLM-extracted value really in the user's reply? Stops the model 'fixing' a number
+    (a wrong checksum digit, a missing digit) or dropping digits from a name, which would turn
+    an invalid answer into a valid-looking one."""
+    ftype = field.get("type")
+    if ftype in _DIGIT_IDS:
+        d = re.sub(r"\D", "", value)
+        return bool(d) and d in re.sub(r"\D", "", text)
+    if ftype in _ALNUM_IDS:
+        v = re.sub(r"[^A-Z0-9]", "", value.upper())
+        return bool(v) and v in re.sub(r"[^A-Z0-9]", "", text.upper())
+    if ftype == "name":
+        return not re.search(r"\d", text)
+    return True
+
+
 def rule_candidate(field: dict, text: str, lang: str, cache: dict, notes: dict | None = None,
                    use_llm: bool = True) -> str:
     """Turn a raw reply into a value to validate, using rules (and the LLM only for options, if allowed)."""
@@ -306,7 +326,7 @@ def extract_validate(state) -> dict:
     ok, value, err = validate(field, candidate)
     if not ok and ftype not in {"choice", "yesno"} and not get_llm().is_mock:
         retry = llm_extract(field, text)
-        if retry:
+        if retry and grounded(field, text, retry):
             ok, value, err = validate(field, retry)
     if not ok:
         return {"error": err, "tcache": cache, "current_field": field["id"]}
