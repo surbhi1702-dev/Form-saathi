@@ -1,0 +1,75 @@
+{
+  "base": {
+    "en": {
+      "chrf": 31.6,
+      "jargon": 0.0,
+      "script": 100.0,
+      "words": 29.1
+    },
+    "all": {
+      "chrf": 8.1,
+      "jargon": 0.0,
+      "script": 25.0,
+      "words": 29.9
+    },
+    "ta": {
+      "chrf": 0.4,
+      "jargon": 0.0,
+      "script": 0.0,
+      "words": 31.4
+    },
+    "hi": {
+      "chrf": 0.3,
+      "jargon": 0.0,
+      "script": 0.0,
+      "words": 29.5
+    },
+    "or": {
+      "chrf": 0.2,
+      "jargon": 0.0,
+      "script": 0.0,
+      "words": 29.7
+    }
+  },
+  "finetuned": {
+    "en": {
+      "chrf": 44.1,
+      "jargon": 0.0,
+      "script": 100.0,
+      "words": 16.6
+    },
+    "all": {
+      "chrf": 24.5,
+      "jargon": 0.0,
+      "script": 100.0,
+      "words": 12.0
+    },
+    "ta": {
+      "chrf": 21.1,
+      "jargon": 0.0,
+      "script": 100.0,
+      "words": 9.2
+    },
+    "hi": {
+      "chrf": 19.4,
+      "jargon": 0.0,
+      "script": 100.0,
+      "words": 13.6
+    },
+    "or": {
+      "chrf": 13.2,
+      "jargon": 0.0,
+      "script": 100.0,
+      "words": 8.6
+    }
+  },
+  "train_log": {
+    "train_rows": 641,
+    "val_rows": 68,
+    "eval_loss": [
+      0.9599,
+      0.8847,
+      0.8996
+    ]
+  }
+}

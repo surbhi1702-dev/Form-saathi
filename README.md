@@ -95,20 +95,33 @@ The first evaluation run found a real bug: Hindi "हाँ" (yes) wasn't recogn
 
 The backend asks Groq which models your API key can use and falls back automatically if the configured one isn't available. `/api/health` shows which model is in use. The current evaluation ran on `openai/gpt-oss-120b`.
 
-## Fine-tuning (in progress)
+## Fine-tuning: plain-language simplifier
 
-`finetune/` has a pipeline to fine-tune Qwen2.5-1.5B with QLoRA. The goal is a model that rewrites official form language into plain Tamil, Hindi, Odia and English.
+`finetune/` fine-tunes Qwen2.5-1.5B-Instruct with QLoRA to rewrite official form language into plain Tamil, Hindi, Odia and English.
 
-- `build_dataset.py` builds jargon-to-plain pairs. There are 50 hand-written seed pairs, and the rest are generated from the sentences in the forms and the knowledge notes.
-- `train_qlora.ipynb` trains on Colab.
-- `serve_simplifier.py` serves the trained model.
-- `eval_simplifier.py` compares it with the base model using chrF, the share of answers still containing jargon, and whether the answer is in the right script.
+- **Data** (`build_dataset.py`): 50 hand-written pairs plus 165 official sentences from the 16 forms and the knowledge notes, each rewritten by Groq (`openai/gpt-oss-120b`) into a jargon version and plain versions in all four languages. Filters drop pairs in the wrong script or that still contain jargon. 709 pairs, split by source sentence into 641 train and 68 test, so no test sentence is seen in training. Groq answers are saved to `data/generated.jsonl`, so the build resumes after the free tier's daily token limit.
+- **Training** (`train_qlora.ipynb`, free Colab T4): base model in 4-bit NF4, LoRA rank 16 / alpha 32 / dropout 0.05 on all attention and MLP projections (about 18M trainable parameters, 1.2% of the model), loss only on the answer tokens, learning rate 2e-4 cosine, 3 epochs, effective batch 16, max length 384. The best epoch by test loss is kept (0.960, 0.885, 0.900, so epoch 2).
+- **Evaluation** (`eval_simplifier.py`, run inside the notebook): the base model and the fine-tuned model, with the same prompt, on the 68 held-out sentences.
+
+| | chrF (all) | chrF en | chrF ta | chrF hi | chrF or | Right script | Avg. words |
+|---|---|---|---|---|---|---|---|
+| Base Qwen2.5-1.5B | 8.1 | 31.6 | 0.4 | 0.3 | 0.2 | 25% | 29.9 |
+| Fine-tuned (QLoRA) | **24.5** | **44.1** | **21.1** | **19.4** | **13.2** | **100%** | **12.0** |
+
+Raw numbers: [`finetune/results/qwen2.5-1.5b-709pairs.json`](finetune/results/qwen2.5-1.5b-709pairs.json).
+
+What this shows: the base model answers in English even when asked for Tamil, Hindi or Odia, so it is in the right script only 25% of the time. After fine-tuning it always answers in the requested script, its answers are less than half as long, and chrF against the reference plain sentence triples. Odia is the weakest language (chrF 13.2).
+
+Limits, stated honestly: the test set is small (17 sentences per language), the reference sentences were written by an LLM and not yet checked by native speakers, and chrF measures closeness to one reference, not whether a reader understands the answer. The jargon-word rate was 0% for both models, so it did not separate them on this data. Next: finish generating the remaining ~250 sentences once Groq's daily limit resets, retrain, try Qwen2.5-3B/7B on a bigger GPU, and have native speakers rate a sample.
+
+**Using it in the app:** run `python serve_simplifier.py --adapter ./formsaathi-simplifier-lora` and set `SIMPLIFIER_URL=http://localhost:8001/simplify` in `backend/.env`. When someone asks what a field means, Groq writes a grounded answer from the knowledge notes and the simplifier rewrites it in plain language in their language. If the simplifier is off or doesn't answer within 20 seconds, the app falls back to Groq's translation. The deployed demo doesn't run it, because a 1.5B model doesn't fit on Render's free plan.
 
 ## Status and what's next
 
 - [ ] Run `eval.run_eval` with Groq and add the results table here
 - [ ] Run the user study in TESTING.md and add the results
-- [ ] Run the fine-tuning and add the evaluation results here
+- [x] Run the fine-tuning and add the evaluation results here
+- [ ] Finish the fine-tuning dataset (about 250 more sentences) and retrain
 - [ ] Test the photo reader on real forms and measure how many fields it gets right
 - [ ] Replace the built-in forms with field lists taken from the official forms (current ones are based on what these forms usually ask)
 - [ ] Get the Tamil, Hindi and Odia text reviewed by native speakers
