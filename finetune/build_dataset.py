@@ -3,6 +3,10 @@
     python build_dataset.py                 # seed pairs only (offline)
     python build_dataset.py --augment 400   # + ~400 official sentences rewritten by Groq into 4 languages
 
+Every Groq answer is saved to data/generated.jsonl as it arrives, and sentences already in that file are
+skipped, so an interrupted run (or one that hits Groq's daily token limit) can simply be run again later.
+The run stops after 5 failed calls in a row, which on the free tier usually means the daily limit.
+
 Groq is called through the backend's LLM layer, so it reads GROQ_API_KEY from backend/.env, picks a chat
 model this key can use, and stays under LLM_MAX_RPM requests a minute (default 25 here).
 
@@ -100,7 +104,12 @@ def main():
     args = ap.parse_args()
     random.seed(args.seed)
 
-    rows = [json.loads(l) for l in (HERE / "data/seed_pairs.jsonl").read_text(encoding="utf-8").splitlines() if l.strip()]
+    def read(path: Path) -> list[dict]:
+        return [json.loads(l) for l in path.read_text(encoding="utf-8").splitlines() if l.strip()] if path.exists() else []
+
+    cache = HERE / "data/generated.jsonl"
+    generated = read(cache)
+    rows = read(HERE / "data/seed_pairs.jsonl") + generated
     if args.augment:
         os.environ.setdefault("LLM_MAX_RPM", "25")
         from app.llm import get_llm
@@ -108,16 +117,29 @@ def main():
         llm = get_llm()
         if llm.is_mock:
             sys.exit("Set GROQ_API_KEY (in backend/.env) to augment.")
-        print(f"augmenting with {llm.chat_model}")
-        sentences = official_sentences()
+        done = {r["source"] for r in generated}
+        sentences = [s for s in official_sentences() if s not in done]
         random.shuffle(sentences)
-        for i, s in enumerate(sentences[: args.augment], 1):
-            try:
-                rows += groq_pairs(s, llm)
-            except Exception as exc:  # rate limit / bad JSON - skip this sentence
-                print(f"skip ({exc})")
-            if i % 25 == 0:
-                print(f"{i}/{args.augment} sentences")
+        print(f"augmenting with {llm.chat_model}: {len(done)} sentences already done, {len(sentences)} left")
+        failures = 0
+        with open(cache, "a", encoding="utf-8") as out:
+            for i, s in enumerate(sentences[: args.augment], 1):
+                try:
+                    new = groq_pairs(s, llm)
+                    failures = 0
+                except Exception as exc:  # rate limit / bad JSON - skip this sentence
+                    print(f"skip ({exc})")
+                    failures += 1
+                    if failures >= 5:
+                        print("5 failures in a row (probably Groq's daily limit); stopping. Run again later to continue.")
+                        break
+                    continue
+                for r in new:
+                    out.write(json.dumps(r, ensure_ascii=False) + "\n")
+                out.flush()
+                rows += new
+                if i % 25 == 0:
+                    print(f"{i}/{min(args.augment, len(sentences))} sentences")
 
     seen, clean = set(), []
     for r in rows:
