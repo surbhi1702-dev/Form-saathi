@@ -21,7 +21,7 @@ from .config import get_settings
 from .forms import engine
 from .i18n import loc
 from .pdf.generator import build_pdf
-from .validators import shown_value
+from .validators import format_inr, shown_value
 
 MAX_MESSAGE_CHARS = 1000
 INPUT_MODES = {"text", "voice", "tap"}
@@ -193,6 +193,41 @@ class SessionManager:
             raise FormNotFound("no form in session")
         data = build_pdf(form, st.get("values", {}), st.get("notes", {}), mask_sensitive=mask_sensitive)
         return data, f"{form['id']}_draft.pdf"
+
+    def guide(self, sid: str) -> dict:
+        """One step per box on the paper form, with the full value to write there (in the form's own script)."""
+        self._touch(sid)
+        st = self._state(sid)
+        form = engine.get_form(st.get("form_id") or "")
+        if not form:
+            raise FormNotFound("no form in session")
+        lang = st.get("lang", "en")
+        values, skipped = st.get("values", {}), st.get("skipped", [])
+        cache = dict(st.get("tcache", {}))
+        labels = self._labels(sid, form, lang, cache)
+        steps = []
+        for f in engine.visible_fields(form, values):
+            if f["id"] not in values and f["id"] not in skipped:
+                continue
+            steps.append({"id": f["id"], "label": labels.get(f["id"], loc(f.get("label"), "en")),
+                          "printed_label": loc(f.get("label"), "en"), "type": f.get("type"),
+                          "value": paper_value(f, values[f["id"]]) if f["id"] in values else None,
+                          "box": f.get("box")})
+        for c in engine.compute_values(form, values):
+            label = loc(c["label"], lang) if i18n.has_translation(c["label"], lang) else \
+                nodes.translate(loc(c["label"], "en"), lang, cache)
+            steps.append({"id": c["id"], "label": label, "printed_label": loc(c["label"], "en"),
+                          "type": "computed", "box": None,
+                          "value": format_inr(c["value"]) if c["kind"] == "amount" else str(c["value"])})
+        return {"form": {"id": form["id"], "title": loc(form["title"], lang), "category": form.get("category")},
+                "has_boxes": any(s["box"] for s in steps), "steps": steps}
+
+
+def paper_value(field: dict, value) -> str:
+    """What to write on paper: the full value, the printed option for tick boxes, amounts without 'Rs.'."""
+    if field.get("type") == "amount" and isinstance(value, (int, float)):
+        return format_inr(value)
+    return str(value)
 
 
 sessions = SessionManager()

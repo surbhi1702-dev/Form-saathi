@@ -5,7 +5,7 @@ import logging
 
 from fastapi import FastAPI, File, HTTPException, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import Response
+from fastapi.responses import JSONResponse, Response
 from pydantic import BaseModel, Field
 
 from . import i18n, metrics
@@ -14,7 +14,7 @@ from .agents.vision import FormReadError, read_form_image
 from .config import get_settings
 from .forms import engine
 from .i18n import loc
-from .llm import get_llm
+from .llm import get_llm, get_vision
 from .service import FormNotFound, SessionNotFound, sessions
 
 logging.basicConfig(level=logging.INFO, format="%(levelname)s %(name)s: %(message)s")
@@ -49,10 +49,12 @@ def _form_card(form: dict, lang: str) -> dict:
 @app.get("/api/health")
 def health():
     llm = get_llm()
+    reader = get_vision() if not llm.is_mock else None
     out = {"ok": True, "llm": "mock" if llm.is_mock else "groq", "langgraph": USING_LANGGRAPH,
-           "forms": len(engine.all_forms())}
+           "forms": len(engine.all_forms()), "photo_reading": reader is not None}
     if not llm.is_mock:
-        out.update(chat_model=llm.chat_model, vision_model=llm.vision_model,
+        out.update(chat_model=llm.chat_model, vision_model=getattr(reader, "vision_model", None),
+                   vision_provider=getattr(reader, "provider", None),
                    model_warnings=llm.models["warnings"],
                    models_available_to_key=llm.models["available"])
     return out
@@ -142,6 +144,18 @@ def download_pdf(sid: str, mask: bool = False):
         raise HTTPException(400, "Pick a form first") from exc
     return Response(data, media_type="application/pdf",
                     headers={"Content-Disposition": f'attachment; filename="{filename}"', "Cache-Control": "no-store"})
+
+
+@app.get("/api/sessions/{sid}/guide")
+def guide(sid: str):
+    """Box-by-box steps for copying the answers onto the paper form. Full values, like the PDF - never cached."""
+    try:
+        data = sessions.guide(sid)
+    except SessionNotFound as exc:
+        raise HTTPException(404, "Session expired or not found") from exc
+    except FormNotFound as exc:
+        raise HTTPException(400, "Pick a form first") from exc
+    return JSONResponse(data, headers={"Cache-Control": "no-store"})
 
 
 @app.delete("/api/sessions/{sid}")

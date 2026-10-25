@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState, type ReactNode } from "react";
 import { api, ApiError } from "./api";
 import { AccessBar } from "./components/AccessBar";
 import { Chat } from "./components/Chat";
+import { GuidedFill } from "./components/GuidedFill";
 import { Home } from "./components/Home";
 import { PaperForm } from "./components/PaperForm";
 import { LANGUAGES, t } from "./i18n";
@@ -36,6 +37,9 @@ export default function App() {
   const [error, setError] = useState<string | null>(null);
   const [sheetOpen, setSheetOpen] = useState(false);
   const [settings, setSettings] = useState<AccessSettings>(loadSettings);
+  const [guiding, setGuiding] = useState(false);
+  // Photos of scanned paper forms, by form id. Kept only in this browser tab, never stored on the server.
+  const [photos, setPhotos] = useState<Record<string, string>>({});
 
   useEffect(() => {
     applySettings(settings);
@@ -75,8 +79,9 @@ export default function App() {
     }
   };
 
-  const open = async (formId: string) => {
+  const open = async (formId: string, photoUrl?: string) => {
     if (!lang) return;
+    if (photoUrl) setPhotos((p) => ({ ...p, [formId]: photoUrl }));
     setError(null);
     setBusy(true);
     try {
@@ -109,6 +114,7 @@ export default function App() {
 
   const goHome = () => {
     setView(null);
+    setGuiding(false);
     setError(null);
   };
 
@@ -191,10 +197,25 @@ export default function App() {
               <Chat view={view} lang={lang} busy={busy} settings={settings} onSend={send} />
             </div>
             <div className="workspace-paper">
-              <PaperForm view={view} lang={lang} onAnother={goHome} onDelete={deleteData} />
+              <PaperForm
+                view={view}
+                lang={lang}
+                onAnother={goHome}
+                onDelete={deleteData}
+                onGuide={() => setGuiding(true)}
+              />
             </div>
           </div>
         </div>
+      )}
+
+      {view && guiding && (
+        <GuidedFill
+          sessionId={view.session_id}
+          lang={lang}
+          photoUrl={view.form ? photos[view.form.id] : undefined}
+          onClose={() => setGuiding(false)}
+        />
       )}
     </div>
   );

@@ -1,13 +1,14 @@
 import { useEffect, useMemo, useRef, useState, type FormEvent } from "react";
 import { api, ApiError } from "../api";
 import { t } from "../i18n";
+import { preparePhoto } from "../photo";
 import type { FormCard, Lang } from "../types";
 
 const CATEGORY_ORDER = ["bank", "utilities", "property", "tax", "employment", "transport"];
 
 interface Props {
   lang: Lang;
-  onOpen: (formId: string) => void;
+  onOpen: (formId: string, photoUrl?: string) => void;
   onError: (message: string) => void;
 }
 
@@ -44,10 +45,12 @@ export function Home({ lang, onOpen, onError }: Props) {
   async function scan(file: File) {
     setScanning(true);
     try {
-      const card = await api.scan(file);
-      onOpen(card.id);
+      const photo = await preparePhoto(file);
+      const card = await api.scan(photo.blob);
+      onOpen(card.id, photo.url);
     } catch (err) {
-      onError(err instanceof ApiError && err.status ? err.message : t("network", lang));
+      if (!(err instanceof ApiError)) onError(t("badPhoto", lang));
+      else onError(err.status ? err.message : t("network", lang));
     } finally {
       setScanning(false);
     }
@@ -97,7 +100,10 @@ export function Home({ lang, onOpen, onError }: Props) {
           accept="image/jpeg,image/png,image/webp"
           capture="environment"
           hidden
-          onChange={(e) => e.target.files?.[0] && scan(e.target.files[0])}
+          onChange={(e) => {
+            if (e.target.files?.[0]) scan(e.target.files[0]);
+            e.target.value = ""; // the same photo can be picked again
+          }}
         />
         <button className="secondary" onClick={() => fileInput.current?.click()} disabled={scanning}>
           {scanning ? t("reading", lang) : t("scanButton", lang)}

@@ -40,7 +40,7 @@ class FakeLLM:
     def vision(self, prompt, image_b64, mime):
         return json.dumps({"title": "Ration card application", "department": "Civil Supplies",
                            "fields": [{"id": "head", "type": "name", "label": "Head of family",
-                                       "question": "Who is the head of the family?"},
+                                       "question": "Who is the head of the family?", "box": [100, 100, 140, 900]},
                                       {"id": "m", "type": "mobile", "label": "Mobile"},
                                       {"id": "members", "type": "number", "label": "Family members"}],
                            "documents": ["Address proof"]})
@@ -88,6 +88,30 @@ class LLMPathTests(unittest.TestCase):
         self.assertIn("head of the family", view["reply"].lower())
         self.assertIsNotNone(engine.get_form(form["id"]))
 
+    def test_guide_gives_full_values_and_boxes_for_paper(self):
+        form = read_form_image(b"fake-bytes", "image/png")
+        sm = SessionManager()
+        sid = sm.start(form["id"], "en")["session_id"]
+        for answer in ["Ravi Kumar", "9840012345", "4"]:
+            sm.send(sid, answer)
+        guide = sm.guide(sid)
+        self.assertTrue(guide["has_boxes"])
+        first = guide["steps"][0]
+        self.assertEqual(first["printed_label"], "Head of family")
+        self.assertEqual(first["box"], {"x": 0.1, "y": 0.1, "w": 0.8, "h": 0.04})
+        self.assertEqual([s["value"] for s in guide["steps"]][1:], ["9840012345", "4"])
+
+    def test_gemini_key_takes_over_photo_reading(self):
+        os.environ["GEMINI_API_KEY"] = "g-test"
+        os.environ["GEMINI_VISION_MODEL"] = "gemini-test"
+        try:
+            reader = llm_module.get_vision()
+            self.assertEqual((reader.provider, reader.vision_model), ("gemini", "gemini-test"))
+        finally:
+            os.environ.pop("GEMINI_API_KEY")
+            os.environ.pop("GEMINI_VISION_MODEL")
+        self.assertIs(llm_module.get_vision(), self.fake)
+
 
 
 class ModelPickingTests(unittest.TestCase):
@@ -104,6 +128,15 @@ class ModelPickingTests(unittest.TestCase):
         info = pick_models("llama-3.1-8b-instant", "v", ["llama-3.1-8b-instant"])
         self.assertEqual(info["chat"], "llama-3.1-8b-instant")
         self.assertEqual(info["warnings"][:0], [])
+
+    def test_gemini_model_picking(self):
+        from app.llm import pick_gemini_model
+        self.assertEqual(pick_gemini_model("mine", ["x"]), "mine")
+        self.assertEqual(pick_gemini_model("", None), "gemini-flash-lite-latest")
+        self.assertEqual(pick_gemini_model("", ["gemini-flash-latest", "gemini-flash-lite-latest"]),
+                         "gemini-flash-lite-latest")
+        self.assertEqual(pick_gemini_model("", ["gemini-3.5-flash", "gemini-3.5-flash-lite", "gemini-3.6-flash-lite-preview",
+                                                "gemini-3.5-flash-lite-tts"]), "gemini-3.5-flash-lite")
 
 
 class GroundingTests(unittest.TestCase):

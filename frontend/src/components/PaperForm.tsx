@@ -7,10 +7,11 @@ interface Props {
   lang: Lang;
   onAnother: () => void;
   onDelete: () => void;
+  onGuide: () => void;
 }
 
 /** The "paper" side: the official-looking form fills itself in ink as the chat progresses. */
-export function PaperForm({ view, lang, onAnother, onDelete }: Props) {
+export function PaperForm({ view, lang, onAnother, onDelete, onGuide }: Props) {
   if (!view.form || !view.fields) return null;
   const { done, total } = view.progress ?? { done: 0, total: 0 };
   const complete = view.stage === "complete";
@@ -86,7 +87,13 @@ export function PaperForm({ view, lang, onAnother, onDelete }: Props) {
 
       {view.can_download && (
         <div className="actions">
-          <a className="primary-link" href={api.pdfUrl(view.session_id, false)} download>
+          <div className="guide-cta">
+            <button className="primary-link" onClick={onGuide}>
+              ✍ {t("guideStart", lang)}
+            </button>
+            <p className="muted">{t("guideStartHint", lang)}</p>
+          </div>
+          <a className="secondary-link" href={api.pdfUrl(view.session_id, false)} download>
             {t("download", lang)}
           </a>
           <a className="secondary-link" href={api.pdfUrl(view.session_id, true)} download>
