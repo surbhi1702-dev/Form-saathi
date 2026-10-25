@@ -55,7 +55,9 @@ def health():
     if not llm.is_mock:
         out.update(chat_model=llm.chat_model, vision_model=getattr(reader, "vision_model", None),
                    vision_provider=getattr(reader, "provider", None),
-                   model_warnings=llm.models["warnings"],
+                   # a missing Groq vision model doesn't matter once another reader (Gemini) is set up
+                   model_warnings=[w for w in llm.models["warnings"]
+                                   if not (reader is not None and reader is not llm and w.startswith("Vision model"))],
                    models_available_to_key=llm.models["available"])
     return out
 
