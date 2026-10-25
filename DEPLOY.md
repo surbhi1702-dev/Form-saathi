@@ -6,10 +6,11 @@ The backend (FastAPI) goes on Render and the frontend (React) goes on Vercel. Bo
 
 1. Sign in to [render.com](https://render.com) with GitHub.
 2. Choose **New → Blueprint** and pick the `form-saathi` repository. Render reads `render.yaml` from the repo.
-3. It asks for two values:
+3. It asks for these values:
    - `GROQ_API_KEY`: your key from [console.groq.com/keys](https://console.groq.com/keys).
    - `CORS_ORIGINS`: put `http://localhost:5173` for now. You'll change it in step 3.
-4. Deploy. When it finishes, open `https://<your-service>.onrender.com/api/health`. You should see `"llm": "groq"` and `"langgraph": true`.
+   - `GEMINI_API_KEY`: a free key from [aistudio.google.com/apikey](https://aistudio.google.com/apikey), for reading photos of paper forms. Leave it empty if your Groq key has a vision model. On a service that already exists, add it under **Environment** instead.
+4. Deploy. When it finishes, open `https://<your-service>.onrender.com/api/health`. You should see `"llm": "groq"`, `"langgraph": true` and, with a Gemini key, `"photo_reading": true`.
 
 The free plan sleeps after a while with no visitors, so the first request after that can take up to a minute. Open the health link before a demo to wake it up.
 

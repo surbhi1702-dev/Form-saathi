@@ -2,6 +2,7 @@
 
 GroqLLM   - real model, called through a LangChain chain (prompt | ChatGroq | parser).
             Falls back to Groq's OpenAI-compatible HTTP API if LangChain isn't installed.
+GeminiVision - optional photo reader (free Google key) for when the Groq key has no vision model.
 MockLLM   - offline stand-in that returns "" so every agent uses its deterministic path.
             Used in tests and when GROQ_API_KEY is not set, so the app always works.
 
@@ -126,6 +127,7 @@ def pick_models(configured_chat: str, configured_vision: str, available: list[st
 
 class GroqLLM:
     is_mock = False
+    provider = "groq"
 
     def __init__(self, settings: Settings):
         self.settings = settings
@@ -204,7 +206,71 @@ class GroqLLM:
         return resp.json()["choices"][0]["message"]["content"].strip()
 
 
+GEMINI_URL = "https://generativelanguage.googleapis.com/v1beta/openai"
+# Preferred in order; the "-latest" aliases follow Google's current release so they don't get retired.
+GEMINI_PREFERRED = ["gemini-flash-lite-latest", "gemini-flash-latest"]
+GEMINI_SKIP = ("tts", "live", "image", "embedding", "audio", "pro", "gemma", "aqa")
+
+
+def pick_gemini_model(configured: str, available: list[str] | None) -> str:
+    if configured or available is None:
+        return configured or GEMINI_PREFERRED[0]
+    for m in GEMINI_PREFERRED:
+        if m in available:
+            return m
+    flash = [m for m in available if "flash" in m and not any(x in m for x in GEMINI_SKIP)]
+    flash = [m for m in flash if "preview" not in m and "exp" not in m] or flash  # stable releases first
+    lite = [m for m in flash if "lite" in m]
+    return (sorted(lite) or sorted(flash) or [GEMINI_PREFERRED[0]])[-1]
+
+
+class GeminiVision:
+    """Reads form photos with Google Gemini through its OpenAI-compatible endpoint."""
+
+    provider = "gemini"
+
+    def __init__(self, settings: Settings):
+        self.settings = settings
+        configured = settings.gemini_vision_model
+        self.vision_model = pick_gemini_model(configured, None if configured else self._list_models())
+
+    def _list_models(self) -> list[str] | None:
+        try:
+            import requests
+
+            r = requests.get(f"{GEMINI_URL}/models", headers={"Authorization": f"Bearer {self.settings.gemini_api_key}"},
+                             timeout=15)
+            r.raise_for_status()
+            return [m["id"].removeprefix("models/") for m in r.json().get("data", [])]
+        except Exception as exc:
+            log.warning("Couldn't list Gemini models: %s", exc)
+            return None
+
+    def vision(self, prompt: str, image_b64: str, mime: str) -> str:
+        import requests
+
+        content = [{"type": "text", "text": prompt},
+                   {"type": "image_url", "image_url": {"url": f"data:{mime};base64,{image_b64}"}}]
+        t0 = time.perf_counter()
+        try:
+            resp = requests.post(
+                f"{GEMINI_URL}/chat/completions",
+                headers={"Authorization": f"Bearer {self.settings.gemini_api_key}"},
+                json={"model": self.vision_model, "messages": [{"role": "user", "content": content}],
+                      "temperature": 0.0, "response_format": {"type": "json_object"}},
+                timeout=120,
+            )
+            resp.raise_for_status()
+            _record((time.perf_counter() - t0) * 1000, True)
+            return _strip_thinking(resp.json()["choices"][0]["message"]["content"] or "")
+        except Exception as exc:  # bad key, daily free limit reached, network
+            _record((time.perf_counter() - t0) * 1000, False)
+            log.warning("Gemini vision call failed: %s", getattr(getattr(exc, "response", None), "text", exc))
+            return ""
+
+
 _llm_singleton: Any = None
+_gemini_singleton: Any = None
 
 
 def get_llm():
@@ -213,6 +279,18 @@ def get_llm():
     if _llm_singleton is None or getattr(_llm_singleton, "is_mock", True) != settings.use_mock:
         _llm_singleton = MockLLM() if settings.use_mock else GroqLLM(settings)
     return _llm_singleton
+
+
+def get_vision():
+    """The model that reads form photos: Gemini when GEMINI_API_KEY is set, else Groq's vision model, else None."""
+    global _gemini_singleton
+    settings = get_settings()
+    if settings.gemini_api_key and not settings.force_mock:
+        if _gemini_singleton is None or _gemini_singleton.settings.gemini_api_key != settings.gemini_api_key:
+            _gemini_singleton = GeminiVision(settings)
+        return _gemini_singleton
+    llm = get_llm()
+    return llm if not llm.is_mock and getattr(llm, "vision_model", None) else None
 
 
 def set_llm(llm) -> None:

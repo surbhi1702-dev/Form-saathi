@@ -34,6 +34,10 @@ class Settings:
     vision_model: str = field(
         default_factory=lambda: os.getenv("GROQ_VISION_MODEL", "meta-llama/llama-4-scout-17b-16e-instruct")
     )
+    # Optional: a free Google Gemini key (https://aistudio.google.com/apikey) for reading photos of forms.
+    # Used instead of a Groq vision model when set. Leave the model empty to pick one automatically.
+    gemini_api_key: str = field(default_factory=lambda: os.getenv("GEMINI_API_KEY", ""))
+    gemini_vision_model: str = field(default_factory=lambda: os.getenv("GEMINI_VISION_MODEL", ""))
     # Optional: URL of your fine-tuned jargon simplifier (finetune/serve_simplifier.py)
     simplifier_url: str = field(default_factory=lambda: os.getenv("SIMPLIFIER_URL", ""))
     # Force the offline mock LLM (used by tests and when no key is set)

@@ -143,6 +143,20 @@ class VisionSchemaTests(unittest.TestCase):
         form = engine.register_custom_form(schema)
         self.assertTrue(form["id"].startswith("custom_"))
 
+    def test_vision_boxes_are_kept_for_guided_fill(self):
+        schema = schema_from_vision_json({"fields": [
+            {"id": "name", "type": "name", "label": "Name", "box": [100, 200, 150, 900]},
+            {"id": "mob", "type": "mobile", "label": "Mobile", "box": [200, 200, 240, 600]},
+            {"id": "bad", "type": "text", "label": "Village", "box": [300, 500, 300, 400]},   # empty area
+            {"id": "junk", "type": "text", "label": "Ward", "box": "top left"},
+        ]})
+        self.assertEqual(schema["fields"][0]["box"], {"x": 0.2, "y": 0.1, "w": 0.7, "h": 0.05})
+        self.assertEqual(schema["fields"][1]["box"], {"x": 0.2, "y": 0.2, "w": 0.4, "h": 0.04})
+        self.assertNotIn("box", schema["fields"][2])
+        self.assertNotIn("box", schema["fields"][3])
+        form = engine.register_custom_form(schema)
+        self.assertEqual(engine.field_by_id(form, "mobile")["box"]["w"], 0.4)
+
 
 # ----------------------------------------------------------------------------- end-to-end conversations
 def sample_answer(field: dict) -> str:

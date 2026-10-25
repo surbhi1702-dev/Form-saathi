@@ -1,4 +1,4 @@
-import type { FormCard, InputMode, Lang, SessionView } from "./types";
+import type { FormCard, Guide, InputMode, Lang, SessionView } from "./types";
 
 const BASE = import.meta.env.VITE_API_BASE ?? "";
 
@@ -41,10 +41,11 @@ export const api = {
     request<SessionView>(`/api/sessions/${sid}/messages`, json({ text, via })),
   language: (sid: string, lang: Lang) => request<SessionView>(`/api/sessions/${sid}/language`, json({ lang })),
   end: (sid: string) => request<{ deleted: boolean }>(`/api/sessions/${sid}`, { method: "DELETE" }),
+  guide: (sid: string) => request<Guide>(`/api/sessions/${sid}/guide`, { cache: "no-store" }),
   pdfUrl: (sid: string, mask: boolean) => `${BASE}/api/sessions/${sid}/pdf${mask ? "?mask=true" : ""}`,
-  scan: (file: File) => {
+  scan: (photo: Blob) => {
     const body = new FormData();
-    body.append("image", file);
+    body.append("image", photo, "form.jpg");
     return request<FormCard>("/api/forms/scan", { method: "POST", body });
   },
 };
