@@ -13,7 +13,7 @@ My father isn't comfortable reading English and my mother's eyesight is weak. Ev
 - Wrong inputs are caught immediately: invalid Aadhaar (Verhoeff checksum), PAN, IFSC, GSTIN (checksum), PIN, mobile number, impossible dates, a cheque older than 3 months, and so on.
 - Ask "what does this mean?" on any question, and it answers from the department's rules (RAG) and shows where the answer came from.
 - At the end you get a summary, warnings (for example, "deposit is more than 3 months' rent"), a checklist of documents to carry, and a PDF to copy from.
-- For a form that isn't built in, you upload a photo of it and the vision model turns it into questions.
+- For a form that isn't built in, you upload a photo of it and the vision model turns it into questions. This needs a Groq key with an image model; without one the upload button is turned off.
 - Accessibility options: larger text, high-contrast colours, read-aloud, and a fully hands-free mode that reads each question, listens, and repeats the answer back.
 - It works on phones and can be installed to the home screen like an app (PWA).
 
@@ -50,7 +50,7 @@ Some decisions and why I made them:
 - **BM25 instead of embeddings for RAG.** The knowledge notes are short and full of exact terms (PMT-06, OVD, 80C), where keyword search works well and needs no embedding model. The index is wrapped as a LangChain retriever, so it can be swapped for a vector store later.
 - **Sensitive numbers are masked.** Aadhaar, PAN and account numbers only show the last 4 digits in the UI and in read-back. Sessions are in memory only and expire after 30 minutes.
 
-Stack: Python, FastAPI, LangGraph, LangChain, Groq (Llama 3.3 70B for text, Llama 4 Scout for images), ReportLab for PDFs, and React with TypeScript and Vite for the frontend. Voice uses the browser's speech recognition and speech synthesis.
+Stack: Python, FastAPI, LangGraph, LangChain, Groq (Llama 3.3 70B by default, or `openai/gpt-oss-120b` when the key can't use Llama; a vision model such as Llama 4 Scout for photos, if the key has one), ReportLab for PDFs, and React with TypeScript and Vite for the frontend. Voice uses the browser's speech recognition and speech synthesis.
 
 ## Running it
 
@@ -91,9 +91,9 @@ python -m eval.usage_report    # anonymous usage numbers collected while people 
 
 The evaluation covers intent routing, value extraction (including rejecting invalid values) and RAG retrieval, in all four languages, and writes `backend/eval/results/EVAL.md`. While people use the app it records only counts (time per form, invalid inputs caught, typed/tapped/spoken), never their answers. [TESTING.md](TESTING.md) has the manual test plan and a made-up test identity to use instead of real details.
 
-The first evaluation run found a real bug: Hindi "हाँ" (yes) wasn't recognised, because splitting words with `\w` breaks Devanagari at vowel signs. A tester also found that "14.2 கிலோ டொமஸ்டிக்" (English words in Tamil script) didn't pick the 14.2 kg option. Both are fixed, with tests.
+The first evaluation run found a real bug: Hindi "हाँ" (yes) wasn't recognised, because splitting words with `\w` breaks Devanagari at vowel signs. A tester also found that "14.2 கிலோ டொமஸ்டிக்" (English words in Tamil script) didn't pick the 14.2 kg option. Both are fixed, with tests. Running it with Groq found a third: when the rules rejected an answer, the LLM retry could quietly "fix" it (fill in a missing digit or drop the digits from "Ravi 123"), so 1 of 10 invalid inputs got through. The retry now only counts if its value is actually in what the user typed.
 
-The backend asks Groq which models your API key can use and falls back automatically if the configured one isn't available. `/api/health` shows which model is in use.
+The backend asks Groq which models your API key can use and falls back automatically if the configured one isn't available. `/api/health` shows which model is in use. The current evaluation ran on `openai/gpt-oss-120b`.
 
 ## Fine-tuning (in progress)
 
